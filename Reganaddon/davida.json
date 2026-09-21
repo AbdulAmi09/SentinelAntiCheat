@@ -1,0 +1,173 @@
+{
+  "id": "acd80a3e-9a04-4113-91f4-af1bb47e96ac",
+  "created_at": "2026-04-04T15:53:51.949787+00:00",
+  "updated_at": "2026-04-04T19:38:21.139559+00:00",
+  "event_id": "batch-upload",
+  "source_name": "davida.pgn",
+  "status": "completed",
+  "request": {
+    "event_id": "batch-upload",
+    "event_type": "online",
+    "pgn_text": "\r\n[Event \"African Online Individual Chess Championships - Girls U20\"]\r\n[Site \"Zoom AFR\"]\r\n[Date \"2021.02.01\"]\r\n[Round \"1.5\"]\r\n[White \"Marais, Nina\"]\r\n[Black \"Strong, Davida\"]\r\n[WhiteElo \"1685\"]\r\n[BlackElo \"1280\"]\r\n[Result \"1/2-1/2\"]\r\n\r\n1. d4 d5 2. c4 e6 3. cxd5 exd5 4. Nc3 Nf6 5. Bg5 Be7 6. Qc2 c6 7. e3 g6 8. Bd3\r\nO-O 9. Nf3 Nbd7 10. O-O Re8 11. Rab1 Nf8 12. b4 a6 13. a4 Ne6 14. Bh4 Ng7 15.\r\nRfc1 Bf5 16. Bxf5 Nxf5 17. Bxf6 Bxf6 18. b5 axb5 19. axb5 Rc8 20. bxc6 bxc6 21.\r\nNa4 Re7 22. Rb3 Rec7 23. Rc3 Ne7 24. Nc5 Qd6 25. h3 Kg7 26. Nd3 h6 27. Rc5 Nf5\r\n28. Nde5 Bxe5 29. Nxe5 Ne7 30. Qa4 Kg8 31. Qd1 Nf5 32. Qf3 Qe6 33. Nd3 Kg7 34.\r\nNf4 Qd6 35. Ne2 Qe6 36. Nc3 Qd6 37. Rc2 Qd7 38. Qd1 Nd6 39. Qc1 Nc4 40. Nb1 Qe6\r\n41. Nd2 Nxd2 42. Qxd2 Qd6 43. Qc1 Qd7 44. Re2 f5 45. Rec2 Qd6 46. R2c3 Qd7 47.\r\nRa3 Qd6 48. Qc3 Qd7 49. Rca5 Kg8 50. Qc5 Qe7 51. Kf1 Qxc5 52. Rxc5 Kf7 53. Ke2\r\nKe6 54. Rca5 Ke7 55. Kd3 g5 56. Ra2 Kd6 57. Ra7 f4 58. Rxc7 Rxc7 59. Ra8 Rh7 60.\r\nexf4 gxf4 61. Rg8 Rf7 62. Rg6+ Kd7 63. Rxh6 Rg7 64. Rf6 Rxg2 65. Rxf4 Rh2 66. h4\r\nKd6 67. Ke3 c5 68. dxc5+ Kxc5 69. Kf3 d4 70. Ke4 Rh1 71. Kd3 Rd1+ 72. Ke2 Rh1\r\n{#d} 1/2-1/2\r\n\r\n[Event \"African Online Individual Chess Championships - Girls U20\"]\r\n[Site \"Zoom AFR\"]\r\n[Date \"2021.02.01\"]\r\n[Round \"2.8\"]\r\n[White \"Strong, Davida\"]\r\n[Black \"Aouachria, Yara Mayar\"]\r\n[WhiteElo \"1280\"]\r\n[BlackElo \"1170\"]\r\n[Result \"1-0\"]\r\n\r\n1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4 Bxb4 5. c3 Bc5 6. d4 exd4 7. O-O d6 8. cxd4\r\nBb6 9. Nc3 Nf6 10. Bb5 O-O 11. h3 h6 12. Re1 a6 13. Bc4 Re8 14. d5 Ne5 15. Nxe5\r\ndxe5 16. Rb1 Ba5 17. Qd3 b5 18. Bb3 c5 19. Qf3 c4 20. Bd1 b4 21. Na4 Bd7 22. Nc5\r\nb3 23. Re2 Rc8 24. Nb7 Qb6 25. Nxa5 Qxa5 26. axb3 Qb6 27. Be3 Qb4 28. Bxh6 Bb5\r\n29. Qg3 Nh5 30. Qg5 Qd6 31. g4 Qxh6 32. Qxh6 gxh6 33. gxh5 cxb3 34. Re3 Ba4 35.\r\nBxb3 Bxb3 36. Rexb3 Rc4 37. f3 Kg7 38. Kg2 Rec8 39. Kg3 a5 40. Ra1 Ra8 41. d6\r\nRd4 42. Rb6 Kf8 43. Rb5 f6 44. Raxa5 Rxa5 45. Rxa5 Rxd6 46. Ra8+ Kg7 47. Kg4 Rd1\r\n48. Ra7+ Kg8 49. Kf5 Rf1 50. Kg6 Kf8 51. Kxf6 Rxf3+ 52. Kg6 Rxh3 53. Kxh6 Re3\r\n54. Ra4 Rf3 55. Kg6 Rg3+ 56. Kf5 Rh3 57. Kf6 Ke8 58. Ke6 Kf8 59. Kf6 Ke8 60.\r\nRa8+ Kd7 61. Rh8 Kd6 62. h6 Rf3+ 63. Kg5 Rg3+ 64. Kh4 Rf3 65. h7 Rf4+ 66. Kg3\r\nRxe4 67. Rd8+ Ke7 68. h8=Q Re3+ 69. Kf2 Re4 70. Qf8+ Ke6 71. Rd6# 1-0\r\n\r\n[Event \"African Online Individual Chess Championships - Girls U20\"]\r\n[Site \"Zoom AFR\"]\r\n[Date \"2021.02.01\"]\r\n[Round \"3.4\"]\r\n[White \"Strong, Davida\"]\r\n[Black \"Katlo Banda, Natalie\"]\r\n[WhiteElo \"1280\"]\r\n[BlackElo \"1440\"]\r\n[Result \"1-0\"]\r\n\r\n1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 Bc5 5. Bxf7+ Ke7 6. Bd5 Rf8 7. O-O Qe8 8.\r\nc3 Qg6 9. d4 exd4 10. Bxc6 dxc6 11. cxd4 Bb6 12. Nc3 h6 13. Nf3 Bg4 14. Ne5 Qh5\r\n15. Nxg4 Nxg4 16. h3 Nf6 17. Qxh5 Nxh5 18. Be3 Rad8 19. Rad1 Rd7 20. Na4 Nf6 21.\r\nNxb6 cxb6 22. f3 Rfd8 23. Kf2 c5 24. d5 Rf8 25. Ke2 Kd8 26. Rd2 Rdf7 27. Rc1 Re7\r\n28. d6 Rd7 29. e5 Ne8 30. Rcd1 g5 31. e6 Rxd6 32. Rxd6+ Nxd6 33. Rxd6+ Ke7 34.\r\nRd7+ Kxe6 35. Rxb7 Ra8 36. Rh7 Kf5 37. Rxh6 Re8 38. g4+ Ke5 39. Rh5 Kd5 40.\r\nRxg5+ Kc4 41. f4 a5 42. Re5 Rd8 43. g5 b5 44. Rxc5+ {#r} 1-0\r\n\r\n[Event \"African Online Individual Chess Championships - Girls U20\"]\r\n[Site \"Zoom AFR\"]\r\n[Date \"2021.02.01\"]\r\n[Round \"4.2\"]\r\n[White \"Paulo, Jemima\"]\r\n[Black \"Strong, Davida\"]\r\n[WhiteElo \"1599\"]\r\n[BlackElo \"1280\"]\r\n[Result \"0-1\"]\r\n\r\n1. d4 Nf6 2. Nf3 d5 3. e3 e6 4. Nbd2 c5 5. b3 Nc6 6. Bb2 cxd4 7. Nxd4 Qc7 8. Bd3\r\nNxd4 9. exd4 Bd6 10. h3 O-O 11. O-O Re8 12. Nf3 b6 13. Ne5 Bb7 14. f4 Ne4 15.\r\nBxe4 dxe4 16. Ng4 Bxf4 17. d5 f5 18. Nf2 Bxd5 19. Kh1 Qb7 20. Qe2 e3 21. Nd3 Bh6\r\n22. Ne5 Rad8 23. Rad1 Bxg2+ 24. Kh2 Bxf1 25. Qxf1 Qe4 26. Rxd8 Rxd8 27. Nd3 e2\r\n28. Qe1 Bf4+ 29. Nxf4 Qxf4+ 30. Kg2 Rd1 31. Qxe2 Rd2 32. Qxd2 Qxd2+ 33. Kf3 Qxc2\r\n34. Bd4 Qe4+ 35. Kg3 Qxd4 36. Kf3 Qe4+ 37. Kf2 Qd3 38. Ke1 Qc2 {#R} 0-1\r\n\r\n[Event \"African Online Individual Chess Championships - Girls U20\"]\r\n[Site \"Zoom AFR\"]\r\n[Date \"2021.02.01\"]\r\n[Round \"5.1\"]\r\n[White \"Nassr, Lina\"]\r\n[Black \"Strong, Davida\"]\r\n[WhiteElo \"1837\"]\r\n[BlackElo \"1280\"]\r\n[Result \"1/2-1/2\"]\r\n\r\n1. d4 Nf6 2. Nf3 d5 3. e3 c5 4. b3 Nc6 5. Bb2 cxd4 6. exd4 g6 7. a3 Bg7 8. Bd3\r\nO-O 9. O-O Nh5 10. Qd2 Qc7 11. Re1 Rd8 12. Nc3 Nf4 13. Bf1 Bh6 14. Kh1 Kg7 15.\r\nBc1 Bg4 16. Ne5 Bh5 17. Ne2 Bxe2 18. Rxe2 Kg8 19. Nxc6 bxc6 20. Re1 Qd6 21. Qb4\r\ng5 22. Rxe7 Qf6 23. Re5 Bf8 24. Qc3 Bd6 25. Bxf4 Qxf4 26. g3 Qf6 27. Re2 Rac8\r\n28. Bh3 Rc7 29. b4 c5 30. bxc5 Bxc5 31. Rd1 Bb6 32. Qe3 h5 33. c3 Ba5 34. Rd3\r\nRb8 35. Bg2 Rb1+ 36. Re1 Rxe1+ 37. Qxe1 Re7 38. Re3 Rxe3 39. Qxe3 Qf5 40. h3 h4\r\n41. Kh2 hxg3+ 42. fxg3 Bc7 43. Qf3 Qxf3 44. Bxf3 Ba5 45. Bxd5 Bxc3 46. g4 Bxd4\r\n47. a4 a5 48. Kg3 Kg7 49. Kf3 Bc3 50. Ke4 f6 51. Kf5 Bb4 52. Be6 Bc3 53. Bd5 Bb4\r\n54. Be6 Bc3 55. Bd5 {#D} 1/2-1/2\r\n\r\n[Event \"African Online Individual Chess Championships - Girls U20\"]\r\n[Site \"Zoom AFR\"]\r\n[Date \"2021.02.01\"]\r\n[Round \"6.2\"]\r\n[White \"Strong, Davida\"]\r\n[Black \"Belattar, Ines\"]\r\n[WhiteElo \"1280\"]\r\n[BlackElo \"1424\"]\r\n[Result \"1/2-1/2\"]\r\n\r\n1. e4 d5 2. exd5 Nf6 3. d4 Nxd5 4. Nf3 g6 5. c4 Nb6 6. c5 Nd5 7. Bc4 Bg7 8. Qb3\r\nc6 9. Nc3 O-O 10. O-O Nxc3 11. bxc3 b5 12. Bd3 Bg4 13. Ng5 e5 14. h3 Bd7 15. d5\r\ncxd5 16. a4 bxa4 17. Qxd5 Bc6 18. Qc4 Qd5 19. Qxd5 Bxd5 20. Rxa4 Rd8 21. Bc2 Nd7\r\n22. c4 Bb7 23. Be3 a5 24. Be4 Bxe4 25. Nxe4 f5 26. c6 fxe4 27. cxd7 Rxd7 28. Rb1\r\nBf8 29. Rb5 Rc8 30. Rbxa5 Rdc7 31. Rxe5 Rxc4 32. Rxe4 Rxa4 33. Rxa4 Rb8 34. g4\r\nRb1+ 35. Kg2 Bd6 36. Ra8+ Rb8 37. Ra6 Be7 38. Kg3 Kf7 39. Ra7 Rb3 40. Kg2 Ke6\r\n41. g5 Rb8 42. h4 Rd8 43. Ra4 Kf5 44. Ra5+ Ke6 45. Kg3 Rd3 46. Ra8 Rd8 47. Ra7\r\nRd3 48. Kf3 Rb3 49. Kg4 Rb4+ 50. Kg3 Bd6+ 51. Kh3 Rb1 52. Rxh7 Kf5 53. Rf7+ Ke4\r\n54. Rf6 Be5 55. Rb6 Rd1 56. Kg2 Kf5 57. f4 Bg7 58. Kf3 Rf1+ 59. Kg3 Re1 60. Rb5+\r\nKe4 61. Bf2 Rd1 62. Rb4+ Kf5 63. Rb5+ Ke4 64. Kg4 Rf1 65. Rb7 Rxf2 66. Rxg7\r\nRxf4+ 67. Kg3 Rf3+ 68. Kg2 Rf4 69. Rxg6 Rxh4 70. Kg3 Rh1 71. Kg2 Rh5 72. Kg3 Kf5\r\n73. Rg8 Rxg5+ 74. Rxg5+ Kxg5 {#D} 1/2-1/2\r\n\r\n[Event \"African Online Individual Chess Championships - Girls U20\"]\r\n[Site \"Zoom AFR\"]\r\n[Date \"2021.02.01\"]\r\n[Round \"7.3\"]\r\n[White \"Strong, Davida\"]\r\n[Black \"Romany, Joy\"]\r\n[WhiteElo \"1280\"]\r\n[BlackElo \"1291\"]\r\n[Result \"1-0\"]\r\n\r\n1. e4 c5 2. Nf3 e6 3. d4 cxd4 4. Nxd4 a6 5. Nc3 Qc7 6. Be3 Nf6 7. Bd3 Bb4 8. O-O\r\nBxc3 9. bxc3 d6 10. c4 Nbd7 11. Qf3 O-O 12. Rab1 b6 13. Qg3 Re8 14. Bh6 g6 15.\r\nQh4 Bb7 16. Bg5 Nh5 17. Rfe1 f6 18. Be3 Ng7 19. f3 Rab8 20. Bf2 a5 21. Nb5 Qc6\r\n22. Rbd1 Rf8 23. Be2 Ne8 24. Qh6 Ne5 25. Rd4 Ba6 26. a4 Bxb5 27. cxb5 Qxc2 28.\r\nf4 Nf7 29. Qh3 f5 30. Bc4 Qxa4 31. exf5 d5 32. Bxd5 Qxb5 33. fxe6 Ned6 34. exf7+\r\nNxf7 35. f5 Kg7 36. Rh4 Ng5 37. Bd4+ Rf6 38. Bxf6+ Kxf6 39. Qc3+ Kxf5 40. Qe5#\r\n1-0\r\n\r\n[Event \"African Online Individual Chess Championships - Girls U20\"]\r\n[Site \"Zoom AFR\"]\r\n[Date \"2021.02.01\"]\r\n[Round \"8.2\"]\r\n[White \"Masaiti, Besa\"]\r\n[Black \"Strong, Davida\"]\r\n[WhiteElo \"1774\"]\r\n[BlackElo \"1280\"]\r\n[Result \"1-0\"]\r\n\r\n1. d4 Nf6 2. Bf4 d5 3. e3 c5 4. c3 Nc6 5. Nd2 g6 6. dxc5 e5 7. Bg5 Bxc5 8. Ne4\r\nBe7 9. Nxf6+ Bxf6 10. Bxf6 Qxf6 11. Qxd5 O-O 12. Nf3 Rd8 13. Qb3 Bg4 14. Be2 e4\r\n15. Nd4 Nxd4 16. cxd4 Bxe2 17. Kxe2 Qa6+ 18. Kd2 Rac8 19. Rac1 Kg7 20. a3 Qf6\r\n21. Ke2 Qg5 22. Rxc8 Rxc8 23. Rg1 Qg4+ 24. Kd2 Qh4 25. Ke2 Qxh2 26. Qd1 a5 27.\r\ng3 Rc6 28. Re1 Rf6 29. Rf1 Qg2 30. Qe1 Rb6 31. Qc3 Rc6 32. Qd2 Qf3+ 33. Ke1 h5\r\n34. d5 Rd6 35. Qxa5 Qf5 36. Qc3+ f6 37. Qc7+ Rd7 38. Qc4 Rxd5 39. b4 b5 40. Qc2\r\nRd3 41. a4 bxa4 42. Qxa4 Qf3 43. Qc2 Kh6 44. b5 Qf5 45. Qb2 Qd5 46. Qb1 {#t} 1-0\r\n\r\n[Event \"African Online Individual Chess Championships - Girls U20\"]\r\n[Site \"Zoom AFR\"]\r\n[Date \"2021.02.01\"]\r\n[Round \"9.3\"]\r\n[White \"Pires, Luzia\"]\r\n[Black \"Strong, Davida\"]\r\n[WhiteElo \"1655\"]\r\n[BlackElo \"1280\"]\r\n[Result \"0-1\"]\r\n\r\n1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Nc3 Nxe4 5. O-O Nxc3 6. dxc3 h6 7. Qd5 Qf6 8.\r\nBb5 a6 9. Bxc6 dxc6 10. Qxe5+ Qxe5 11. Nxe5 Be6 12. Be3 O-O-O 13. a3 Bd6 14. Nd3\r\nRhe8 15. Bd4 Bd5 16. Rfe1 f6 17. Rxe8 Rxe8 18. Re1 Rxe1+ 19. Nxe1 Kd7 20. Kf1 c5\r\n21. Be3 g5 22. g3 f5 23. f4 gxf4 24. Bxf4 Bxf4 25. gxf4 c4 26. Ke2 a5 27. Nf3\r\nBxf3+ 28. Kxf3 Ke6 29. b3 cxb3 30. cxb3 a4 31. bxa4 Kd5 32. Ke3 Kc4 33. Kd2 b6\r\n34. Kc2 h5 35. h4 c6 36. Kd2 Kb3 37. Kd3 c5 38. a5 bxa5 39. a4 Kxa4 40. Kc4 Ka3\r\n41. Kxc5 Kb3 42. Kb5 a4 43. c4 a3 44. c5 a2 45. c6 a1=Q 46. c7 Qa8 47. Kc5 Qc8\r\n48. Kd6 Kc4 49. Ke5 Kc5 50. Kf6 Kd5 51. Kg5 Ke4 52. Kxh5 Qxc7 53. Kg6 Qxf4 54.\r\nh5 Qg4+ 55. Kf6 Qxh5 56. Ke6 Qg6+ 57. Ke7 Kd5 58. Kd7 Qf7+ 59. Kc8 Kc6 {#R} 0-1\r\n",
+    "tracked_player_name": "Strong, Davida ",
+    "tracked_player_id": "Strong, Davida ",
+    "default_player_color": "white",
+    "default_official_elo": 1280,
+    "analyze_both_players": false,
+    "high_stakes_event": false,
+    "performance_rating_this_event": null,
+    "historical": {
+      "games_count": 0,
+      "avg_acl": null,
+      "std_acl": null,
+      "avg_ipr": null,
+      "std_ipr": null,
+      "avg_perf": null,
+      "std_perf": null
+    },
+    "max_games": 10
+  },
+  "response": {
+    "event_id": "batch-upload",
+    "source_name": "davida.pgn",
+    "batch_run_id": "acd80a3e-9a04-4113-91f4-af1bb47e96ac",
+    "players_analyzed": 1,
+    "games_parsed": 9,
+    "analyses_generated": 1,
+    "csv_columns": [
+      "Name",
+      "Rating",
+      "Rating Used",
+      "IPR12",
+      "CombZ",
+      "PredZ",
+      "#turns",
+      "wtfactor",
+      "IPR diff",
+      "2sigma",
+      "ChallFaced",
+      "s",
+      "c",
+      "MMZ",
+      "EVZ",
+      "ASDZ",
+      "ELWZ",
+      "Engine",
+      "Weights",
+      "T2Z",
+      "T3Z",
+      "T3thr50Z",
+      "sOfIPR",
+      "cOfIPR",
+      "CombZ+",
+      "Pred+",
+      "ProxyIPR12",
+      "ProxyCombZ",
+      "Proxy2sigma",
+      "ProxyS",
+      "ProxyC",
+      "ProxyMMZ",
+      "ProxyEVZ",
+      "ProxyASDZ",
+      "ProxyELWZ"
+    ],
+    "rows": [
+      {
+        "player_name": "Strong, Davida",
+        "player_id": "Strong, Davida ",
+        "games_count": 9,
+        "source_game_ids": [
+          "batch-upload:Strong, Davida :pgn-1",
+          "batch-upload:Strong, Davida :pgn-2",
+          "batch-upload:Strong, Davida :pgn-3",
+          "batch-upload:Strong, Davida :pgn-4",
+          "batch-upload:Strong, Davida :pgn-5",
+          "batch-upload:Strong, Davida :pgn-6",
+          "batch-upload:Strong, Davida :pgn-7",
+          "batch-upload:Strong, Davida :pgn-8",
+          "batch-upload:Strong, Davida :pgn-9"
+        ],
+        "colors": [
+          "black",
+          "white"
+        ],
+        "official_elo": 1280,
+        "avg_opponent_official_elo": 1541.7,
+        "audit_id": "ce366f0e-cbd5-4a4a-80e5-edd91a956753",
+        "risk_tier": "LOW",
+        "weighted_risk_score": 0.4682,
+        "regan_z_score": 3.043478260869565,
+        "ipr_estimate": 2898.2608695652175,
+        "analyzed_move_count": 345,
+        "regan_row": {
+          "Name": "StrongDavida",
+          "Rating": 1280,
+          "Rating Used": 1280,
+          "IPR12": 3146.1044176706832,
+          "CombZ": 10.65,
+          "PredZ": -1.58,
+          "#turns": 332,
+          "wtfactor": 1,
+          "IPR diff": 1866.1044176706832,
+          "2sigma": 384.1749099639162,
+          "ChallFaced": 1541.7,
+          "s": 0.478916,
+          "c": 0.409639,
+          "MMZ": 12.77,
+          "EVZ": 2.94,
+          "ASDZ": 14.61,
+          "ELWZ": -12.2,
+          "Engine": "STOCKFISH",
+          "Weights": "UW",
+          "T2Z": 0.16,
+          "T3Z": 0.5,
+          "T3thr50Z": 11.15,
+          "sOfIPR": 0.478915662651,
+          "cOfIPR": 0.55753253012,
+          "CombZ+": 10.65,
+          "Pred+": 0.0,
+          "ProxyIPR12": 2898.2608695652175,
+          "ProxyCombZ": 3.04,
+          "Proxy2sigma": 95.9525973239281,
+          "ProxyS": 0.0,
+          "ProxyC": 0.455072,
+          "ProxyMMZ": 0.65,
+          "ProxyEVZ": -0.27,
+          "ProxyASDZ": 16602.5,
+          "ProxyELWZ": 1.53
+        }
+      }
+    ],
+    "failures": []
+  },
+  "progress": {
+    "stage": "completed",
+    "targets_total": 1,
+    "targets_completed": 1,
+    "failures": 0
+  },
+  "logs": [
+    {
+      "timestamp": "2026-04-04T15:53:51.998837+00:00",
+      "message": "Batch worker started"
+    },
+    {
+      "timestamp": "2026-04-04T15:53:52.153983+00:00",
+      "message": "prepared 0/1"
+    },
+    {
+      "timestamp": "2026-04-04T15:53:52.179057+00:00",
+      "message": "analyzing 0/1 Strong, Davida"
+    },
+    {
+      "timestamp": "2026-04-04T19:38:20.956866+00:00",
+      "message": "analyzing 1/1 Strong, Davida"
+    },
+    {
+      "timestamp": "2026-04-04T19:38:21.139559+00:00",
+      "message": "Batch worker completed"
+    }
+  ],
+  "csv_text": "Name,Rating,Rating Used,IPR12,CombZ,PredZ,#turns,wtfactor,IPR diff,2sigma,ChallFaced,s,c,MMZ,EVZ,ASDZ,ELWZ,Engine,Weights,T2Z,T3Z,T3thr50Z,sOfIPR,cOfIPR,CombZ+,Pred+,ProxyIPR12,ProxyCombZ,Proxy2sigma,ProxyS,ProxyC,ProxyMMZ,ProxyEVZ,ProxyASDZ,ProxyELWZ\r\nStrongDavida,1280,1280,3146.1044176706832,10.65,-1.58,332,1,1866.1044176706832,384.1749099639162,1541.7,0.478916,0.409639,12.77,2.94,14.61,-12.2,STOCKFISH,UW,0.16,0.5,11.15,0.478915662651,0.55753253012,10.65,0.0,2898.2608695652175,3.04,95.9525973239281,0.0,0.455072,0.65,-0.27,16602.5,1.53\r\n",
+  "error_text": null
+}

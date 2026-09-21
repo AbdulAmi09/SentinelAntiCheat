@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+
+# Node / Next.js
+node_modules/
+web/.next/
+web/out/
+*.tsbuildinfo
+
+# Vendored engine binaries (provision locally per README)
+stockfish/*.zip
+stockfish/stockfish
+stockfish/*.exe
+backend/models/lc0/
+backend/models/maia/*/
+backend/models/maia/*.pb
+backend/models/maia/*.dll
+
+# Trained model artifacts (produced by training pipeline, not source)
+backend/models/xgboost/*/*.json
+backend/models/isolation_forest/*/*.pkl
+
+# Datasets (provision locally, not committed)
+backend/data/raw/
+backend/data/processed/
+
+# Env / secrets
+.env
+.env.local
+*.env
+
+# OS
+.DS_Store

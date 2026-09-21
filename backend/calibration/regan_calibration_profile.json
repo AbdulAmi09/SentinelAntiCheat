@@ -1,0 +1,45 @@
+{
+  "schema_version": 2,
+  "profile_version": "2026.03-bootstrap",
+  "generated_at_utc": "2026-03-02T16:22:42+00:00",
+  "source_dataset": "calibration/normalized_games.csv",
+  "band_size": 200,
+  "min_samples": 50,
+  "bands": [
+    {
+      "min_elo": 2600,
+      "max_elo": 2799,
+      "expected_acl": 31.2654,
+      "std_acl": 17.7646,
+      "samples": 369
+    },
+    {
+      "min_elo": 2800,
+      "max_elo": 2999,
+      "expected_acl": 26.2389,
+      "std_acl": 14.7345,
+      "samples": 789
+    },
+    {
+      "min_elo": 3000,
+      "max_elo": 3199,
+      "expected_acl": 18.7133,
+      "std_acl": 11.2224,
+      "samples": 845
+    },
+    {
+      "min_elo": 3200,
+      "max_elo": 3399,
+      "expected_acl": 14.8379,
+      "std_acl": 8.8698,
+      "samples": 2136
+    },
+    {
+      "min_elo": 3400,
+      "max_elo": 3599,
+      "expected_acl": 14.164,
+      "std_acl": 8.9674,
+      "samples": 126
+    }
+  ]
+}

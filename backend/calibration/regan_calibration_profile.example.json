@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "band_size": 200,
+  "bands": [
+    {
+      "min_elo": 1600,
+      "max_elo": 1799,
+      "expected_acl": 63.0,
+      "std_acl": 17.0,
+      "samples": 2000
+    },
+    {
+      "min_elo": 1800,
+      "max_elo": 1999,
+      "expected_acl": 50.0,
+      "std_acl": 14.0,
+      "samples": 2000
+    }
+  ]
+}
+

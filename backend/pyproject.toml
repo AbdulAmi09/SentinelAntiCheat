@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sentinel-anti-cheat"
+version = "0.1.0"
+description = "Chess integrity analysis backend scaffold"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.115.0",
+  "uvicorn[standard]>=0.30.0",
+  "pydantic>=2.8.0",
+  "pydantic-settings>=2.3.0",
+  "numpy>=1.26.0",
+  "scipy>=1.13.0",
+  "python-chess>=1.999",
+  "requests>=2.32.0",
+  "zstandard>=0.22.0",
+  "xgboost>=2.1.0",
+  "scikit-learn>=1.5.0",
+  "redis>=5.0.0",
+  "cryptography>=42.0.0"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.2.0",
+  "httpx>=0.27.0"
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
