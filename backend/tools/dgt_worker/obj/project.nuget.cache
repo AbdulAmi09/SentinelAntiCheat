@@ -1,0 +1,53 @@
+{
+  "version": 2,
+  "dgSpecHash": "xKdIUThMzrA=",
+  "success": false,
+  "projectFilePath": "C:\\Users\\Accountant\\Desktop\\Abdul\\SentinelAntiCheat\\backend\\tools\\dgt_worker\\DgtWorker.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1100",
+      "level": "Error",
+      "message": "Unable to resolve 'Microsoft.NETCore.App.Ref (= 8.0.20)' for 'net8.0'.",
+      "projectPath": "C:\\Users\\Accountant\\Desktop\\Abdul\\SentinelAntiCheat\\backend\\tools\\dgt_worker\\DgtWorker.csproj",
+      "filePath": "C:\\Users\\Accountant\\Desktop\\Abdul\\SentinelAntiCheat\\backend\\tools\\dgt_worker\\DgtWorker.csproj",
+      "libraryId": "Microsoft.NETCore.App.Ref",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1100",
+      "level": "Error",
+      "message": "Unable to resolve 'Microsoft.WindowsDesktop.App.Ref (= 8.0.20)' for 'net8.0'.",
+      "projectPath": "C:\\Users\\Accountant\\Desktop\\Abdul\\SentinelAntiCheat\\backend\\tools\\dgt_worker\\DgtWorker.csproj",
+      "filePath": "C:\\Users\\Accountant\\Desktop\\Abdul\\SentinelAntiCheat\\backend\\tools\\dgt_worker\\DgtWorker.csproj",
+      "libraryId": "Microsoft.WindowsDesktop.App.Ref",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1100",
+      "level": "Error",
+      "message": "Unable to resolve 'Microsoft.AspNetCore.App.Ref (= 8.0.20)' for 'net8.0'.",
+      "projectPath": "C:\\Users\\Accountant\\Desktop\\Abdul\\SentinelAntiCheat\\backend\\tools\\dgt_worker\\DgtWorker.csproj",
+      "filePath": "C:\\Users\\Accountant\\Desktop\\Abdul\\SentinelAntiCheat\\backend\\tools\\dgt_worker\\DgtWorker.csproj",
+      "libraryId": "Microsoft.AspNetCore.App.Ref",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1100",
+      "level": "Error",
+      "message": "Unable to resolve 'Microsoft.NETCore.App.Host.win-x64 (= 8.0.20)' for 'net8.0'.",
+      "projectPath": "C:\\Users\\Accountant\\Desktop\\Abdul\\SentinelAntiCheat\\backend\\tools\\dgt_worker\\DgtWorker.csproj",
+      "filePath": "C:\\Users\\Accountant\\Desktop\\Abdul\\SentinelAntiCheat\\backend\\tools\\dgt_worker\\DgtWorker.csproj",
+      "libraryId": "Microsoft.NETCore.App.Host.win-x64",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
+}

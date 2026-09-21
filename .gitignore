@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+
+# Node / Next.js
+node_modules/
+web/.next/
+web/out/
+*.tsbuildinfo
+
+# Vendored engine binaries (provision locally per README)
+stockfish/*.zip
+stockfish/stockfish
+stockfish/*.exe
+stockfish/bin/
+backend/models/lc0/
+backend/models/maia/*/
+backend/models/maia/*.pb
+backend/models/maia/*.dll
+
+# Trained model artifacts (produced by training pipeline, not source)
+backend/models/xgboost/*/*.json
+backend/models/isolation_forest/*/*.pkl
+
+# Datasets (provision locally, not committed)
+backend/data/raw/
+backend/data/processed/
+
+# Env / secrets
+.env
+.env.local
+*.env
+
+*.db
+*.sqlite
+*.sqlite3
+
+# Real tournament data / third-party personal data (names, ratings, games
+# of real players; not ours to redistribute) - keep local only
+Reganaddon/
+
+# OS
+.DS_Store

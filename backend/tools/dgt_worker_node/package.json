@@ -1,0 +1,10 @@
+{
+  "name": "sentinel-dgt-worker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "commonjs",
+  "description": "DGT board bridge to Sentinel using dgtchess.",
+  "dependencies": {
+    "dgtchess": "^1.0.1"
+  }
+}
