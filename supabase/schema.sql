@@ -498,7 +498,6 @@ create index if not exists idx_consent_logs_job on consent_logs(job_id, created_
 create index if not exists idx_otb_camera_events_event on otb_camera_events(event_id, created_at desc);
 create index if not exists idx_otb_camera_events_session on otb_camera_events(session_id, created_at desc);
 create index if not exists idx_dgt_board_events_event on dgt_board_events(event_id, created_at desc);
-<<<<<<< HEAD
 
 -- Migration-safe uniqueness, lookup, and compatibility indexes.
 create unique index if not exists idx_analyses_external_audit_id_unique
@@ -1417,5 +1416,3 @@ grant select on public.case_workspace_overview to authenticated, service_role;
 grant select on public.partner_job_overview to authenticated, service_role;
 grant execute on function public.get_dashboard_feed(text, integer) to authenticated, service_role;
 grant execute on function public.get_partner_job_summary(uuid, integer) to authenticated, service_role;
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674

@@ -70,7 +70,6 @@ class SupabaseRepository:
         if last_exc is not None:
             raise last_exc
 
-<<<<<<< HEAD
     def _upsert(self, path: str, payload: list[dict], *, on_conflict: str) -> None:
         self._post(
             f"{path}?on_conflict={on_conflict}",
@@ -78,8 +77,6 @@ class SupabaseRepository:
             prefer="resolution=merge-duplicates,return=minimal",
         )
 
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
     @staticmethod
     def _normalize_text(value: str | None) -> str | None:
         cleaned = (value or "").strip()
@@ -117,7 +114,6 @@ class SupabaseRepository:
         request_payload: dict,
     ) -> None:
         resolved_federation_id = self._resolve_federation_id(event_id, federation_id)
-<<<<<<< HEAD
         review_status = "under_review" if human_review_required else "pending"
         report_version = int(response_payload.get("report_version") or 1)
         report_locked = bool(response_payload.get("report_locked") or False)
@@ -182,23 +178,10 @@ class SupabaseRepository:
             "players",
             [{"id": player_id}],
             on_conflict="id",
-=======
-        if resolved_federation_id is not None:
-            self._post(
-                "federations?on_conflict=id",
-                [{"id": resolved_federation_id, "name": resolved_federation_id}],
-                prefer="resolution=merge-duplicates,return=minimal",
-            )
-        self._post(
-            "players?on_conflict=id",
-            [{"id": player_id}],
-            prefer="resolution=merge-duplicates,return=minimal",
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
         )
         event_row = {"id": event_id, "event_type": event_type}
         if resolved_federation_id is not None:
             event_row["federation_id"] = resolved_federation_id
-<<<<<<< HEAD
         self._upsert(
             "events",
             [event_row],
@@ -218,71 +201,12 @@ class SupabaseRepository:
                     "analysis_external_audit_id": audit_id,
                     "version_no": report_version,
                     "locked": report_locked,
-=======
-        self._post(
-            "events?on_conflict=id",
-            [event_row],
-            prefer="resolution=merge-duplicates,return=minimal",
-        )
-        review_status = "under_review" if human_review_required else "pending"
-        self._post(
-            "analyses",
-            [
-                {
-                    "player_id": player_id,
-                    "event_id": event_id,
-                    "federation_id": resolved_federation_id,
-                    "external_audit_id": audit_id,
-                    "risk_tier": response_payload["risk_tier"],
-                    "confidence": response_payload["confidence"],
-                    "analyzed_move_count": response_payload["analyzed_move_count"],
-                    "triggered_signals": response_payload["triggered_signals"],
-                    "weighted_risk_score": weighted_risk_score,
-                    "event_type": event_type,
-                    "regan_threshold_used": regan_threshold_used,
-                    "natural_occurrence_statement": natural_occurrence_statement,
-                    "natural_occurrence_probability": natural_occurrence_probability,
-                    "model_version": model_version,
-                    "feature_schema_version": feature_schema_version,
-                    "report_schema_version": report_schema_version,
-                    "report_version": int(response_payload.get("report_version") or 1),
-                    "report_locked": bool(response_payload.get("report_locked") or False),
-                    "report_locked_at": response_payload.get("report_locked_at"),
-                    "legal_disclaimer_text": legal_disclaimer_text,
-                    "human_review_required": human_review_required,
-                    "review_status": review_status,
-                    "explainability_method": response_payload.get("explainability_method"),
-                    "explainability_items": response_payload.get("explainability_items"),
-                    "ml_fusion_source": response_payload.get("ml_fusion_source"),
-                    "ml_primary_score": response_payload.get("ml_primary_score"),
-                    "ml_secondary_score": response_payload.get("ml_secondary_score"),
-                    "input_hash": audit_id,
-                    "explanation": response_payload["explanation"],
-                    "signals": response_payload["signals"],
-                    "raw_request": request_payload,
-                    "raw_response": response_payload,
-                }
-            ],
-            prefer="return=minimal",
-        )
-        self._post(
-            "report_versions?on_conflict=analysis_external_audit_id,version_no",
-            [
-                {
-                    "analysis_external_audit_id": audit_id,
-                    "version_no": int(response_payload.get("report_version") or 1),
-                    "locked": bool(response_payload.get("report_locked") or False),
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
                     "locked_at": response_payload.get("report_locked_at"),
                     "disclaimer_text": legal_disclaimer_text,
                     "report_body": response_payload,
                 }
             ],
-<<<<<<< HEAD
             on_conflict="analysis_external_audit_id,version_no",
-=======
-            prefer="resolution=merge-duplicates,return=minimal",
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
         )
 
     def persist_pgn_details(
@@ -298,7 +222,6 @@ class SupabaseRepository:
     ) -> None:
         resolved_federation_id = self._resolve_federation_id(event_id, federation_id)
         if resolved_federation_id is not None:
-<<<<<<< HEAD
             self._upsert(
                 "federations",
                 [{"id": resolved_federation_id, "name": resolved_federation_id}],
@@ -309,33 +232,14 @@ class SupabaseRepository:
             "players",
             [{"id": player_id}, {"id": opponent_player_id}],
             on_conflict="id",
-=======
-            self._post(
-                "federations?on_conflict=id",
-                [{"id": resolved_federation_id, "name": resolved_federation_id}],
-                prefer="resolution=merge-duplicates,return=minimal",
-            )
-        # Ensure player/opponent/event identities exist for FK constraints.
-        self._post(
-            "players?on_conflict=id",
-            [{"id": player_id}, {"id": opponent_player_id}],
-            prefer="resolution=merge-duplicates,return=minimal",
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
         )
         event_row = {"id": event_id}
         if resolved_federation_id is not None:
             event_row["federation_id"] = resolved_federation_id
-<<<<<<< HEAD
         self._upsert(
             "events",
             [event_row],
             on_conflict="id",
-=======
-        self._post(
-            "events?on_conflict=id",
-            [event_row],
-            prefer="resolution=merge-duplicates,return=minimal",
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
         )
 
         white_id = player_id if player_color == "white" else opponent_player_id
@@ -387,17 +291,10 @@ class SupabaseRepository:
                 )
 
         if game_rows:
-<<<<<<< HEAD
             self._upsert(
                 "games",
                 game_rows,
                 on_conflict="id",
-=======
-            self._post(
-                "games?on_conflict=id",
-                game_rows,
-                prefer="resolution=merge-duplicates,return=minimal",
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
             )
         if move_feature_rows:
             self._post("move_features", move_feature_rows, prefer="return=minimal")
@@ -409,30 +306,20 @@ class SupabaseRepository:
         *,
         job_id: str,
         api_key_id: str,
-<<<<<<< HEAD
         federation_id: str | None,
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
         game_id: str,
         player_id: str,
         raw_payload: dict[str, Any],
         status: str,
         webhook_url: str | None,
     ) -> None:
-<<<<<<< HEAD
         self._upsert(
-=======
-        self._post(
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
             "partner_jobs",
             [
                 {
                     "job_id": job_id,
                     "api_key_id": api_key_id,
-<<<<<<< HEAD
                     "federation_id": federation_id,
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
                     "game_id": game_id,
                     "player_id": player_id,
                     "raw_payload": raw_payload,
@@ -440,34 +327,21 @@ class SupabaseRepository:
                     "webhook_url": webhook_url,
                 }
             ],
-<<<<<<< HEAD
             on_conflict="job_id",
         )
         self._upsert(
-=======
-            prefer="return=minimal",
-        )
-        self._post(
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
             "partner_payloads",
             [
                 {
                     "job_id": job_id,
                     "api_key_id": api_key_id,
-<<<<<<< HEAD
                     "federation_id": federation_id,
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
                     "game_id": game_id,
                     "player_id": player_id,
                     "payload": raw_payload,
                 }
             ],
-<<<<<<< HEAD
             on_conflict="job_id",
-=======
-            prefer="return=minimal",
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
         )
 
     @staticmethod

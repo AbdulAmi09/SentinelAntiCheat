@@ -28,13 +28,10 @@ def _load_key() -> bytes:
 def encrypt_text(value: str) -> str:
     if value is None:
         raise ValueError("Cannot encrypt empty value")
-<<<<<<< HEAD
     # Local/dev workflows still need partner-key management even before
     # operators provision AES material. Fall back to plaintext only outside prod.
     if not settings.encryption_key and settings.app_env.lower() != "prod":
         return value
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
     key = _load_key()
     nonce = os.urandom(12)
     aes = AESGCM(key)

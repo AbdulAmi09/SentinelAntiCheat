@@ -80,7 +80,6 @@ def test_persist_analysis_populates_federation_and_report_version(monkeypatch) -
         "ml_fusion_source": "heuristic_xgb_iforest",
         "ml_primary_score": 0.78,
         "ml_secondary_score": 0.61,
-<<<<<<< HEAD
         "chain_hash": "chain-1",
         "prev_chain_hash": "chain-0",
         "evidence_report": {"summary": "compressed"},
@@ -92,8 +91,6 @@ def test_persist_analysis_populates_federation_and_report_version(monkeypatch) -
         "pep_score": 0.14,
         "regan_z_score": 4.6,
         "report_workflow": {"locked_by": "chief_arbiter"},
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
     }
 
     repo.persist_analysis(
@@ -117,18 +114,13 @@ def test_persist_analysis_populates_federation_and_report_version(monkeypatch) -
 
     assert any(path.startswith("federations") for path, _, _ in calls)
     event_call = next(payload for path, payload, _ in calls if path.startswith("events"))
-<<<<<<< HEAD
     analysis_call = next(payload for path, payload, _ in calls if path.startswith("analyses"))
-=======
-    analysis_call = next(payload for path, payload, _ in calls if path == "analyses")
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
     report_call = next(payload for path, payload, _ in calls if path.startswith("report_versions"))
 
     assert event_call[0]["federation_id"] == "fedA"
     assert analysis_call[0]["federation_id"] == "fedA"
     assert analysis_call[0]["review_status"] == "under_review"
     assert analysis_call[0]["explainability_method"] == "shap_proxy_v1"
-<<<<<<< HEAD
     assert analysis_call[0]["chain_hash"] == "chain-1"
     assert analysis_call[0]["report_workflow"] == {"locked_by": "chief_arbiter"}
     assert report_call[0]["analysis_external_audit_id"] == "audit-123"
@@ -160,7 +152,3 @@ def test_persist_partner_job_uses_idempotent_upserts(monkeypatch) -> None:
     assert calls[0][1][0]["federation_id"] == "fed-alpha"
     assert calls[1][0] == "partner_payloads?on_conflict=job_id"
     assert calls[1][2] == "resolution=merge-duplicates,return=minimal"
-=======
-    assert report_call[0]["analysis_external_audit_id"] == "audit-123"
-    assert report_call[0]["version_no"] == 2
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674

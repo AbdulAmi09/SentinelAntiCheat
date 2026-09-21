@@ -32,5 +32,9 @@ backend/data/processed/
 .env.local
 *.env
 
+*.db
+*.sqlite
+*.sqlite3
+
 # OS
 .DS_Store

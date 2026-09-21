@@ -24,13 +24,10 @@ _ROLE_PERMISSIONS: dict[RoleName, set[str]] = {
         "case_evidence_list",
         "case_flag_add",
         "case_flag_list",
-<<<<<<< HEAD
         "case_review_add",
         "case_review_list",
         "case_signoff_add",
         "case_signoff_list",
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
         "otb_incident_create",
         "otb_incident_list",
         "otb_camera_ingest",
@@ -66,13 +63,10 @@ _ROLE_PERMISSIONS: dict[RoleName, set[str]] = {
         "case_evidence_list",
         "case_flag_add",
         "case_flag_list",
-<<<<<<< HEAD
         "case_review_add",
         "case_review_list",
         "case_signoff_add",
         "case_signoff_list",
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
         "otb_incident_create",
         "otb_incident_list",
         "otb_camera_ingest",
@@ -91,12 +85,9 @@ _ROLE_PERMISSIONS: dict[RoleName, set[str]] = {
         "partner_key_create",
         "partner_key_disable",
         "partner_key_rotate",
-<<<<<<< HEAD
         "partner_key_reveal",
         "partner_job_list",
         "partner_session_list",
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
     },
     "federation_admin": {
         "analyze",
@@ -118,13 +109,10 @@ _ROLE_PERMISSIONS: dict[RoleName, set[str]] = {
         "case_evidence_list",
         "case_flag_add",
         "case_flag_list",
-<<<<<<< HEAD
         "case_review_add",
         "case_review_list",
         "case_signoff_add",
         "case_signoff_list",
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
         "otb_incident_create",
         "otb_incident_list",
         "otb_camera_ingest",
@@ -143,12 +131,9 @@ _ROLE_PERMISSIONS: dict[RoleName, set[str]] = {
         "partner_key_create",
         "partner_key_disable",
         "partner_key_rotate",
-<<<<<<< HEAD
         "partner_key_reveal",
         "partner_job_list",
         "partner_session_list",
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
     },
     "system_admin": {"*"},
 }

@@ -2,11 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
-<<<<<<< HEAD
 from pydantic import BaseModel, ConfigDict, Field
-=======
-from pydantic import BaseModel, Field
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
 
 
 class MoveInput(BaseModel):
@@ -63,11 +59,7 @@ class AnalyzePgnRequest(BaseModel):
     event_id: str
     event_type: str = Field(default="online", pattern="^(online|otb)$")
     opponent_player_id: str = "opponent-unknown"
-<<<<<<< HEAD
     official_elo: int | None = None
-=======
-    official_elo: int
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
     player_color: str = Field(default="white", pattern="^(white|black)$")
     high_stakes_event: bool = False
     pgn_text: str
@@ -130,7 +122,6 @@ class AnalyzeResponse(BaseModel):
     report_schema_version: str | None = None
     natural_occurrence_statement: str | None = None
     natural_occurrence_probability: float | None = None
-<<<<<<< HEAD
     ipr_estimate: float | None = None
     regan_z_score: float | None = None
     regan_threshold: float | None = None
@@ -139,13 +130,6 @@ class AnalyzeResponse(BaseModel):
     superhuman_move_rate: float | None = None
     rating_adjusted_move_probability: float | None = None
     complexity_accuracy_ratio: float | None = None
-=======
-    regan_z_score: float | None = None
-    regan_threshold: float | None = None
-    pep_score: float | None = None
-    superhuman_move_rate: float | None = None
-    rating_adjusted_move_probability: float | None = None
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
     opening_familiarity_index: float | None = None
     opponent_strength_correlation: float | None = None
     round_anomaly_clustering_score: float | None = None
@@ -175,10 +159,7 @@ class AnalyzeResponse(BaseModel):
     report_version: int = 1
     report_locked: bool = False
     report_locked_at: str | None = None
-<<<<<<< HEAD
     regan_metrics: dict[str, float | int] | None = None
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
     confidence_intervals: dict[str, list[float] | None] = Field(default_factory=dict)
     evidence_report: EvidenceReport | None = None
     behavioral_metrics: dict[str, float | int] = Field(default_factory=dict)
@@ -280,7 +261,6 @@ class CaseFlagCreateRequest(BaseModel):
     metadata: dict[str, Any] = Field(default_factory=dict)
 
 
-<<<<<<< HEAD
 class CaseReviewCreateRequest(BaseModel):
     reviewer_user_id: str | None = None
     action: str = Field(pattern="^(note|request_more_data|recommend_monitoring|recommend_escalation|close_case)$")
@@ -295,8 +275,6 @@ class CaseSignoffCreateRequest(BaseModel):
     note: str | None = None
 
 
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
 class ReportGenerateRequest(BaseModel):
     case_id: str | None = None
     audit_id: str | None = None
@@ -305,11 +283,8 @@ class ReportGenerateRequest(BaseModel):
     export_format: str = Field(default="json", pattern="^(json|csv|pdf)$")
     use_ai: bool = False
     llm_provider: str | None = Field(default=None, pattern="^(openai|anthropic|none)?$")
-<<<<<<< HEAD
     llm_api_url: str | None = None
     llm_api_key: str | None = None
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
     llm_model: str | None = None
     pdf_engine: str | None = Field(default=None, pattern="^(auto|weasyprint|minimal)?$")
 
@@ -351,11 +326,8 @@ class OTBCameraEventRequest(BaseModel):
 
 
 class CameraServiceEventPayload(BaseModel):
-<<<<<<< HEAD
     model_config = ConfigDict(populate_by_name=True)
 
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
     event_id: str | None = None
     case_id: str | None = None
     player_id: str | None = None
@@ -369,13 +341,6 @@ class CameraServiceEventPayload(BaseModel):
     data: dict[str, Any] = Field(default_factory=dict)
     consent: dict[str, Any] = Field(default_factory=dict)
 
-<<<<<<< HEAD
-=======
-    class Config:
-        allow_population_by_field_name = True
-
-
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
 class DGTBoardEventRequest(BaseModel):
     event_id: str | None = None
     session_id: str | None = None
@@ -472,7 +437,6 @@ class PartnerSessionCreateRequest(BaseModel):
     player_id: str | None = None
 
 
-<<<<<<< HEAD
 class AnalyzePgnBatchRequest(BaseModel):
     event_id: str | None = None
     event_type: str = Field(default="online", pattern="^(online|otb)$")
@@ -517,8 +481,6 @@ class BatchAnalyzePgnResponse(BaseModel):
     failures: list[dict[str, str]] = Field(default_factory=list)
 
 
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
 class PartnerKeyRotateResponse(BaseModel):
     id: str
     key: str

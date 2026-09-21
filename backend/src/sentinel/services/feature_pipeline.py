@@ -11,10 +11,7 @@ from sentinel.services.calibration import regan_acl_params_for_elo
 from sentinel.services.maia import score_maia_humanness
 from sentinel.services.phase_filter import split_analysis_window, timing_available
 from sentinel.services.policy import regan_threshold_for_event
-<<<<<<< HEAD
 from sentinel.services.regan_metrics import compute_regan_metrics
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
 from sentinel.services.style_fingerprint import style_deviation_score
 
 
@@ -184,10 +181,7 @@ def compute_features(req: AnalyzeRequest) -> AggregatedFeatures:
             identity_shared_device=identity_shared,
             identity_distinct_count=identity_distinct,
             identity_seen_count=identity_seen,
-<<<<<<< HEAD
             regan_metrics=None,
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
             confidence_intervals={},
         )
 
@@ -307,7 +301,6 @@ def compute_features(req: AnalyzeRequest) -> AggregatedFeatures:
         timing_confidence_score = float(
             _clip((coverage * 0.6) + (_clip(len(timed_values) / 30.0, 0.0, 1.0) * 0.25) + (_clip(variability, 0.0, 1.0) * 0.15), 0.0, 1.0)
         )
-<<<<<<< HEAD
 
     perf_spike = _z(req.performance_rating_this_event, req.historical.avg_perf, req.historical.std_perf)
     opponent_strength_correlation = None
@@ -411,8 +404,6 @@ def compute_features(req: AnalyzeRequest) -> AggregatedFeatures:
         "regan_z_score": regan_ci,
     }
     regan_metrics = compute_regan_metrics(all_moves, req.official_elo)
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
 
     perf_spike = _z(req.performance_rating_this_event, req.historical.avg_perf, req.historical.std_perf)
     opponent_strength_correlation = None
@@ -511,7 +502,7 @@ def compute_features(req: AnalyzeRequest) -> AggregatedFeatures:
         "regan_z_score": regan_ci,
     }
 
-        return AggregatedFeatures(
+    return AggregatedFeatures(
         analyzed_move_count=analyzed,
         engine_match_pct=float(mean(engine_best_match)),
         top3_match_pct=float(mean(top3_match)),
@@ -580,7 +571,6 @@ def compute_features(req: AnalyzeRequest) -> AggregatedFeatures:
         behavioral_avg_mouse_path_straightness=b_straight,
         behavioral_avg_move_time_seconds=b_time,
         behavioral_mouse_event_count=b_mouse,
-<<<<<<< HEAD
         behavioral_avg_drag_duration_ms=b_drag,
         behavioral_avg_hover_dwell_played_square_ms=b_dwell,
         behavioral_avg_squares_visited=b_squares,
@@ -597,20 +587,3 @@ def compute_features(req: AnalyzeRequest) -> AggregatedFeatures:
         regan_metrics=regan_metrics,
         confidence_intervals=ci_map,
     )
-=======
-            behavioral_avg_drag_duration_ms=b_drag,
-            behavioral_avg_hover_dwell_played_square_ms=b_dwell,
-            behavioral_avg_squares_visited=b_squares,
-            behavioral_avg_reaction_time_ms=b_reaction,
-            camera_event_count=cam_event_count,
-            camera_face_missing_count=cam_face_missing,
-            camera_multiple_faces_count=cam_multiple_faces,
-            camera_gaze_away_count=cam_gaze_away,
-            camera_low_light_count=cam_low_light,
-            camera_microphone_active_count=cam_microphone,
-            identity_shared_device=identity_shared,
-            identity_distinct_count=identity_distinct,
-            identity_seen_count=identity_seen,
-            confidence_intervals=ci_map,
-        )
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674

@@ -107,10 +107,7 @@ class PartnerRepository:
             )
             conn.commit()
             self._ensure_key_hash_column(conn)
-<<<<<<< HEAD
             self._ensure_partner_scope_columns(conn)
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
             self._backfill_key_hashes(conn)
 
     def _ensure_key_hash_column(self, conn: sqlite3.Connection) -> None:
@@ -137,7 +134,6 @@ class PartnerRepository:
             )
         conn.commit()
 
-<<<<<<< HEAD
     def _ensure_partner_scope_columns(self, conn: sqlite3.Connection) -> None:
         table_columns = {
             table_name: {row[1] for row in conn.execute(f"PRAGMA table_info({table_name})").fetchall()}
@@ -173,17 +169,12 @@ class PartnerRepository:
         )
         conn.commit()
 
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
     def create_key(
         self,
         key: str,
         secret: str,
         partner_name: str,
-<<<<<<< HEAD
         federation_id: str | None,
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
         webhook_url: str | None,
         rate_limit_per_minute: int,
     ) -> dict:
@@ -195,22 +186,14 @@ class PartnerRepository:
         with sqlite3.connect(self.db_path) as conn:
             conn.execute(
                 (
-<<<<<<< HEAD
                     "INSERT INTO partner_api_keys (id, key, key_hash, secret, partner_name, federation_id, webhook_url, rate_limit_per_minute, active, created_at) "
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1, ?)"
                 ),
                 (key_id, key_enc, key_hash, secret_enc, partner_name, federation_id, webhook_url, rate_limit_per_minute, now),
-=======
-                    "INSERT INTO partner_api_keys (id, key, key_hash, secret, partner_name, webhook_url, rate_limit_per_minute, active, created_at) "
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, 1, ?)"
-                ),
-                (key_id, key_enc, key_hash, secret_enc, partner_name, webhook_url, rate_limit_per_minute, now),
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
             )
             conn.commit()
         return self.get_key(key_id, reveal=True)
 
-<<<<<<< HEAD
     def list_keys(self, federation_id: str | None = None) -> list[dict]:
         query = (
             "SELECT id, key, secret, partner_name, federation_id, webhook_url, rate_limit_per_minute, active, created_at "
@@ -236,27 +219,6 @@ class PartnerRepository:
             params.append(federation_id)
         with sqlite3.connect(self.db_path) as conn:
             row = conn.execute(query, tuple(params)).fetchone()
-=======
-    def list_keys(self) -> list[dict]:
-        with sqlite3.connect(self.db_path) as conn:
-            rows = conn.execute(
-                (
-                    "SELECT id, key, secret, partner_name, webhook_url, rate_limit_per_minute, active, created_at "
-                    "FROM partner_api_keys ORDER BY created_at DESC"
-                )
-            ).fetchall()
-        return [self._row_to_key(row, reveal=False) for row in rows]
-
-    def get_key(self, key_id: str, reveal: bool = False) -> dict:
-        with sqlite3.connect(self.db_path) as conn:
-            row = conn.execute(
-                (
-                    "SELECT id, key, secret, partner_name, webhook_url, rate_limit_per_minute, active, created_at "
-                    "FROM partner_api_keys WHERE id = ?"
-                ),
-                (key_id,),
-            ).fetchone()
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
         if row is None:
             raise KeyError("Partner key not found")
         return self._row_to_key(row, reveal=reveal)
@@ -265,11 +227,7 @@ class PartnerRepository:
         with sqlite3.connect(self.db_path) as conn:
             row = conn.execute(
                 (
-<<<<<<< HEAD
                     "SELECT id, key, secret, partner_name, federation_id, webhook_url, rate_limit_per_minute, active, created_at "
-=======
-                    "SELECT id, key, secret, partner_name, webhook_url, rate_limit_per_minute, active, created_at "
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
                     "FROM partner_api_keys WHERE key_hash = ? AND active = 1"
                 ),
                 (hash_key(api_key),),
@@ -277,11 +235,7 @@ class PartnerRepository:
             if row is None:
                 rows = conn.execute(
                     (
-<<<<<<< HEAD
                         "SELECT id, key, secret, partner_name, federation_id, webhook_url, rate_limit_per_minute, active, created_at "
-=======
-                        "SELECT id, key, secret, partner_name, webhook_url, rate_limit_per_minute, active, created_at "
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
                         "FROM partner_api_keys WHERE active = 1"
                     )
                 ).fetchall()
@@ -297,7 +251,6 @@ class PartnerRepository:
             return None
         return self._row_to_key(row, reveal=False)
 
-<<<<<<< HEAD
     def update_webhook(self, key_id: str, webhook_url: str | None, federation_id: str | None = None) -> dict:
         with sqlite3.connect(self.db_path) as conn:
             if federation_id:
@@ -352,38 +305,12 @@ class PartnerRepository:
                 )
             conn.commit()
         return self.get_key(key_id, reveal=True, federation_id=federation_id)
-=======
-    def update_webhook(self, key_id: str, webhook_url: str | None) -> dict:
-        with sqlite3.connect(self.db_path) as conn:
-            conn.execute(
-                "UPDATE partner_api_keys SET webhook_url = ? WHERE id = ?",
-                (webhook_url, key_id),
-            )
-            conn.commit()
-        return self.get_key(key_id)
-
-    def disable_key(self, key_id: str) -> dict:
-        with sqlite3.connect(self.db_path) as conn:
-            conn.execute("UPDATE partner_api_keys SET active = 0 WHERE id = ?", (key_id,))
-            conn.commit()
-        return self.get_key(key_id)
-
-    def rotate_secret(self, key_id: str, new_secret: str) -> dict:
-        secret_enc = encrypt_text(new_secret)
-        with sqlite3.connect(self.db_path) as conn:
-            conn.execute("UPDATE partner_api_keys SET secret = ? WHERE id = ?", (secret_enc, key_id))
-            conn.commit()
-        return self.get_key(key_id, reveal=True)
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
 
     def create_job(
         self,
         job_id: str,
         api_key_id: str,
-<<<<<<< HEAD
         federation_id: str | None,
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
         game_id: str,
         player_id: str,
         raw_payload: dict,
@@ -394,17 +321,10 @@ class PartnerRepository:
         with sqlite3.connect(self.db_path) as conn:
             conn.execute(
                 (
-<<<<<<< HEAD
                     "INSERT INTO partner_jobs (id, job_id, api_key_id, federation_id, game_id, player_id, raw_payload_json, status, webhook_url, created_at) "
                     "VALUES (?, ?, ?, ?, ?, ?, ?, 'queued', ?, ?)"
                 ),
                 (row_id, job_id, api_key_id, federation_id, game_id, player_id, json.dumps(raw_payload), webhook_url, now),
-=======
-                    "INSERT INTO partner_jobs (id, job_id, api_key_id, game_id, player_id, raw_payload_json, status, webhook_url, created_at) "
-                    "VALUES (?, ?, ?, ?, ?, ?, 'queued', ?, ?)"
-                ),
-                (row_id, job_id, api_key_id, game_id, player_id, json.dumps(raw_payload), webhook_url, now),
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
             )
             conn.commit()
         return self.get_job(job_id)
@@ -414,11 +334,7 @@ class PartnerRepository:
             row = conn.execute(
                 (
                     "SELECT job_id, api_key_id, game_id, player_id, raw_payload_json, status, risk_level, risk_score, "
-<<<<<<< HEAD
                     "result_json, webhook_url, webhook_delivered, webhook_attempts, created_at, completed_at, federation_id "
-=======
-                    "result_json, webhook_url, webhook_delivered, webhook_attempts, created_at, completed_at "
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
                     "FROM partner_jobs WHERE job_id = ?"
                 ),
                 (job_id,),
@@ -440,18 +356,12 @@ class PartnerRepository:
             webhook_attempts,
             created_at,
             completed_at,
-<<<<<<< HEAD
             federation_id,
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
         ) = row
         return {
             "job_id": job_id,
             "api_key_id": api_key_id,
-<<<<<<< HEAD
             "federation_id": federation_id,
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
             "game_id": game_id,
             "player_id": player_id,
             "raw_payload": json.loads(raw_payload_json or "{}"),
@@ -632,10 +542,7 @@ class PartnerRepository:
         self,
         session_id: str,
         api_key_id: str,
-<<<<<<< HEAD
         federation_id: str | None,
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
         game_id: str | None,
         player_id: str | None,
     ) -> dict:
@@ -644,7 +551,6 @@ class PartnerRepository:
         with sqlite3.connect(self.db_path) as conn:
             conn.execute(
                 (
-<<<<<<< HEAD
                     "INSERT INTO partner_sessions (id, session_id, api_key_id, federation_id, game_id, player_id, status, created_at) "
                     "VALUES (?, ?, ?, ?, ?, ?, 'active', ?)"
                 ),
@@ -782,15 +688,6 @@ class PartnerRepository:
                 }
             )
         return sessions
-=======
-                    "INSERT INTO partner_sessions (id, session_id, api_key_id, game_id, player_id, status, created_at) "
-                    "VALUES (?, ?, ?, ?, ?, 'active', ?)"
-                ),
-                (row_id, session_id, api_key_id, game_id, player_id, now),
-            )
-            conn.commit()
-        return {"session_id": session_id, "api_key_id": api_key_id, "game_id": game_id, "player_id": player_id}
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
 
     @staticmethod
     def _mask(value: str | None) -> str | None:
@@ -801,11 +698,7 @@ class PartnerRepository:
         return f"{'*' * (len(value) - 4)}{value[-4:]}"
 
     def _row_to_key(self, row: tuple, reveal: bool = False) -> dict:
-<<<<<<< HEAD
         key_id, key, secret, partner_name, federation_id, webhook_url, rate_limit, active, created_at = row
-=======
-        key_id, key, secret, partner_name, webhook_url, rate_limit, active, created_at = row
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
         key_plain = decrypt_text(key)
         secret_plain = decrypt_text(secret)
         if reveal:
@@ -819,10 +712,7 @@ class PartnerRepository:
             "key": key_value,
             "secret": secret_value,
             "partner_name": partner_name,
-<<<<<<< HEAD
             "federation_id": federation_id,
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
             "webhook_url": webhook_url,
             "rate_limit_per_minute": int(rate_limit),
             "active": bool(active),

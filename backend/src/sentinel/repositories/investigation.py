@@ -92,7 +92,6 @@ class InvestigationRepository:
             )
             conn.execute(
                 """
-<<<<<<< HEAD
                 CREATE TABLE IF NOT EXISTS case_reviews (
                   id TEXT PRIMARY KEY,
                   case_id TEXT NOT NULL,
@@ -121,8 +120,6 @@ class InvestigationRepository:
             )
             conn.execute(
                 """
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
                 CREATE TABLE IF NOT EXISTS otb_incidents (
                   id TEXT PRIMARY KEY,
                   case_id TEXT,
@@ -477,7 +474,6 @@ class InvestigationRepository:
             conn.commit()
         return self.get_report(report_id)
 
-<<<<<<< HEAD
     def add_review(
         self,
         case_id: str,
@@ -580,8 +576,6 @@ class InvestigationRepository:
             for row in rows
         ]
 
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
     def get_report(self, report_id: str) -> dict:
         with sqlite3.connect(self.db_path) as conn:
             row = conn.execute(

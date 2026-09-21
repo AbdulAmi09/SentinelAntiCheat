@@ -15,23 +15,15 @@ def build_ai_narrative(
     mode: str,
     provider: str | None = None,
     model: str | None = None,
-<<<<<<< HEAD
     api_url: str | None = None,
     api_key: str | None = None,
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
 ) -> list[dict[str, Any]] | None:
     provider = (provider or settings.llm_provider or "none").lower()
     if provider in {"none", "off"}:
         return None
 
-<<<<<<< HEAD
     api_url = api_url or settings.llm_api_url
     api_key = api_key or settings.llm_api_key
-=======
-    api_url = settings.llm_api_url
-    api_key = settings.llm_api_key
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
     if not api_url or not api_key:
         return None
 

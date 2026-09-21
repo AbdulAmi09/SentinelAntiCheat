@@ -23,6 +23,22 @@ class SignalResult:
 
 
 @dataclass
+class ReganMetrics:
+    s: float
+    c: float
+    MMZ: float
+    EVZ: float
+    ASDZ: float
+    CombZ: float
+    IPR12: float
+    ELWZ: float
+    two_sigma: float
+    n_moves: int
+    expected_s: float
+    expected_c: float
+
+
+@dataclass
 class AggregatedFeatures:
     analyzed_move_count: int
     engine_match_pct: float
@@ -106,3 +122,4 @@ class AggregatedFeatures:
     identity_distinct_count: int
     identity_seen_count: int
     confidence_intervals: dict[str, tuple[float, float] | None]
+    regan_metrics: ReganMetrics | None = None

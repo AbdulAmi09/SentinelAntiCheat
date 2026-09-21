@@ -31,13 +31,9 @@ def system_status() -> dict[str, Any]:
     lc0_ready = bool(lc0_path and Path(str(lc0_path)).exists())
     maia_models_detected = bool(maia.get("available_count"))
     ml_models_loaded = bool(ml_fusion.get("models_loaded"))
-<<<<<<< HEAD
     # ML fusion is an optional scoring layer; the analysis pipeline still functions
     # in heuristic mode when those artifacts are missing or corrupted.
     analysis_pipeline_operational = bool(engine.get("exists") and lc0_ready and maia_models_detected)
-=======
-    analysis_pipeline_operational = bool(engine.get("exists") and lc0_ready and maia_models_detected and ml_models_loaded)
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
 
     warnings: list[str] = []
     if calibration.get("source") != "file":
@@ -49,11 +45,8 @@ def system_status() -> dict[str, Any]:
         warnings.append("ML fusion enabled but no model artifacts are available")
     if settings.ml_fusion_enabled and ml_fusion.get("models_present") and not ml_fusion.get("models_loaded"):
         warnings.append("ML model artifacts found but failed to load")
-<<<<<<< HEAD
     if not settings.encryption_key:
         warnings.append("Encryption key not configured; partner secrets stored in plaintext in non-prod environments")
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
     if maia.get("models_dir"):
         if maia.get("lc0_path") and not Path(str(maia.get("lc0_path"))).exists():
             warnings.append("Maia lc0 binary missing; Maia probabilities disabled")

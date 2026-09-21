@@ -61,7 +61,6 @@ def test_report_workflow_lock_and_version(tmp_path: Path) -> None:
 
     with pytest.raises(ValueError):
         repo.bump_report_version(audit_id)
-<<<<<<< HEAD
 
 
 def test_batch_run_persistence(tmp_path: Path) -> None:
@@ -86,5 +85,3 @@ def test_batch_run_persistence(tmp_path: Path) -> None:
 
     listed = repo.list_batch_runs(limit=10)
     assert listed[0]["id"] == run["id"]
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674

@@ -40,7 +40,6 @@ class AuditRepository:
                 )
                 """
             )
-<<<<<<< HEAD
             conn.execute(
                 """
                 CREATE TABLE IF NOT EXISTS batch_runs (
@@ -64,12 +63,6 @@ class AuditRepository:
                 "ALTER TABLE audit_log ADD COLUMN prev_chain_hash TEXT",
                 "ALTER TABLE batch_runs ADD COLUMN progress_json TEXT",
                 "ALTER TABLE batch_runs ADD COLUMN log_json TEXT",
-=======
-            # Migration-safe additive columns for existing SQLite files.
-            for stmt in (
-                "ALTER TABLE audit_log ADD COLUMN chain_hash TEXT",
-                "ALTER TABLE audit_log ADD COLUMN prev_chain_hash TEXT",
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
             ):
                 try:
                     conn.execute(stmt)
@@ -227,7 +220,6 @@ class AuditRepository:
             "request": payload.get("request", {}),
             "response": payload.get("response", {}),
         }
-<<<<<<< HEAD
 
     def create_batch_run(self, *, event_id: str | None, source_name: str | None, request_payload: dict) -> dict:
         run_id = str(uuid4())
@@ -379,5 +371,3 @@ class AuditRepository:
             "csv_text": csv_text,
             "error_text": error_text,
         }
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674

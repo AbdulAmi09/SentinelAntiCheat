@@ -92,7 +92,6 @@ def _parse_policy(strings: list[str]) -> dict[str, float]:
     return {uci: p for uci, p in entries}
 
 
-<<<<<<< HEAD
 def _maia_limit() -> chess.engine.Limit:
     kwargs: dict[str, float | int] = {}
     if settings.maia_nodes > 0:
@@ -102,8 +101,6 @@ def _maia_limit() -> chess.engine.Limit:
     return chess.engine.Limit(**kwargs)
 
 
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
 @dataclass
 class MaiaPolicyContext:
     engine: chess.engine.SimpleEngine
@@ -120,11 +117,7 @@ class MaiaPolicyContext:
         try:
             info = self.engine.analyse(
                 board,
-<<<<<<< HEAD
                 _maia_limit(),
-=======
-                chess.engine.Limit(nodes=settings.maia_nodes),
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
                 info=chess.engine.INFO_ALL,
             )
         except Exception as exc:

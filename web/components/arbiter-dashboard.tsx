@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-<<<<<<< HEAD
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { AnalysisConsole } from "./analysis-console";
@@ -16,10 +15,6 @@ import {
   ReportSection,
   TournamentSection,
 } from "./workspace-sections";
-=======
-
-import { AnalysisConsole } from "./analysis-console";
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
 
 type DashboardPage =
   | "command"
@@ -76,13 +71,10 @@ type DashboardFeedResponse = {
 
 type SystemStatus = {
   generated_at_utc: string;
-<<<<<<< HEAD
   app_env?: string;
   model_version?: string;
   feature_schema_version?: string;
   report_schema_version?: string;
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
   calibration: {
     source?: string;
     profile_version?: string;
@@ -107,12 +99,9 @@ type SystemStatus = {
   engine: { exists?: boolean };
   opening_book: { exists?: boolean };
   tablebase: { exists?: boolean };
-<<<<<<< HEAD
   supabase_configured?: boolean;
   analysis_pipeline_operational?: boolean;
   ml_models_loaded?: boolean;
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
   warnings: string[];
 };
 
@@ -125,12 +114,9 @@ type CaseRecord = {
   event_id?: string | null;
   players: string[];
   summary?: string | null;
-<<<<<<< HEAD
   tags?: string[];
   priority?: string | null;
   assigned_to?: string | null;
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
 };
 
 type CaseNote = {
@@ -139,7 +125,6 @@ type CaseNote = {
   author?: string | null;
   note_type?: string | null;
   text?: string | null;
-<<<<<<< HEAD
   structured?: Record<string, unknown>;
 };
 
@@ -217,8 +202,6 @@ type BatchQueueResponse = {
   response_format?: string;
   source_name?: string | null;
   message?: string;
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
 };
 
 type PartnerKey = {
@@ -230,7 +213,6 @@ type PartnerKey = {
   rate_limit_per_minute: number;
   active: boolean;
   created_at: string;
-<<<<<<< HEAD
   key_last4?: string | null;
   secret_last4?: string | null;
 };
@@ -260,8 +242,6 @@ type PartnerSession = {
   status: string;
   created_at?: string;
   ended_at?: string | null;
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
 };
 
 type OTBCameraEvent = {
@@ -284,7 +264,6 @@ type DGTBoardEvent = {
   move_uci?: string | null;
   ply?: number | null;
   clock_ms?: number | null;
-<<<<<<< HEAD
   fen?: string | null;
   created_at?: string;
 };
@@ -302,11 +281,6 @@ type OTBIncidentRecord = {
   created_at: string;
 };
 
-=======
-  created_at?: string;
-};
-
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
 type Props = {
   apiBase: string;
   apiRole: string;
@@ -316,7 +290,6 @@ type Props = {
   apiCheckedAt: string;
   supabaseReady: boolean;
   missingEnvVars: string[];
-<<<<<<< HEAD
   initialPage?: DashboardPage;
 };
 
@@ -402,8 +375,6 @@ type PlayerProfileResponse = {
   updated_at?: string | null;
   profile: Record<string, unknown>;
   history: Array<Record<string, unknown>>;
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
 };
 
 const RISK_CLASS: Record<RiskTier, string> = {
@@ -451,7 +422,6 @@ function formatClock(now: Date | null): string {
   return now.toLocaleTimeString();
 }
 
-<<<<<<< HEAD
 function numeric(value: unknown, fallback = 0): number {
   return typeof value === "number" && Number.isFinite(value) ? value : fallback;
 }
@@ -474,8 +444,6 @@ function estimateImpliedRating(cpLoss: number): number {
   return Math.max(100, Math.min(3600, 3300 - (28 * cpLoss)));
 }
 
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
 export function ArbiterDashboard({
   apiBase,
   apiRole,
@@ -485,14 +453,9 @@ export function ArbiterDashboard({
   apiCheckedAt,
   supabaseReady,
   missingEnvVars,
-<<<<<<< HEAD
   initialPage = "command",
 }: Props) {
   const [page, setPage] = useState<DashboardPage>(initialPage);
-=======
-}: Props) {
-  const [page, setPage] = useState<DashboardPage>("command");
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
   const [feedGames, setFeedGames] = useState<FeedGame[]>([]);
   const [feedAlerts, setFeedAlerts] = useState<FeedAlert[]>([]);
   const [feedSummary, setFeedSummary] = useState<FeedSummary | null>(null);
@@ -504,7 +467,6 @@ export function ArbiterDashboard({
   const [cases, setCases] = useState<CaseRecord[]>([]);
   const [selectedCaseId, setSelectedCaseId] = useState<string | null>(null);
   const [caseNotes, setCaseNotes] = useState<CaseNote[]>([]);
-<<<<<<< HEAD
   const [caseReviews, setCaseReviews] = useState<CaseReview[]>([]);
   const [caseSignoffs, setCaseSignoffs] = useState<CaseSignoff[]>([]);
   const [caseFlags, setCaseFlags] = useState<CaseFlag[]>([]);
@@ -560,20 +522,10 @@ export function ArbiterDashboard({
 
 1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. Re1 b5 7. Bb3 d6 8. c3 O-O 9. h3 1-0`);
   const [partnerTestStatus, setPartnerTestStatus] = useState("");
-=======
-  const [caseTitle, setCaseTitle] = useState("");
-  const [caseEventId, setCaseEventId] = useState("");
-  const [casePlayers, setCasePlayers] = useState("");
-  const [caseNoteText, setCaseNoteText] = useState("");
-  const [partnerKeys, setPartnerKeys] = useState<PartnerKey[]>([]);
-  const [partnerName, setPartnerName] = useState("");
-  const [partnerWebhook, setPartnerWebhook] = useState("");
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
   const [reportAuditId, setReportAuditId] = useState("");
   const [reportCaseId, setReportCaseId] = useState("");
   const [reportMode, setReportMode] = useState("arbiter");
   const [reportFormat, setReportFormat] = useState("json");
-<<<<<<< HEAD
   const [reportUseAi, setReportUseAi] = useState(false);
   const [reportProvider, setReportProvider] = useState("openai");
   const [reportModel, setReportModel] = useState("");
@@ -593,16 +545,12 @@ export function ArbiterDashboard({
   const [batchPreview, setBatchPreview] = useState("");
   const [batchRuns, setBatchRuns] = useState<BatchRun[]>([]);
   const [deepDiveNote, setDeepDiveNote] = useState("");
-=======
-  const [reportOutput, setReportOutput] = useState<string>("");
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
   const [liveSessionId, setLiveSessionId] = useState("");
   const [liveEvents, setLiveEvents] = useState<Array<Record<string, unknown>>>([]);
   const [liveRisk, setLiveRisk] = useState<Record<string, unknown> | null>(null);
   const [tournamentPlayers, setTournamentPlayers] = useState<Array<Record<string, unknown>>>([]);
   const [tournamentAlerts, setTournamentAlerts] = useState<Array<Record<string, unknown>>>([]);
   const [auditDetails, setAuditDetails] = useState<Record<string, unknown> | null>(null);
-<<<<<<< HEAD
   const [playerQuery, setPlayerQuery] = useState("");
   const [playerProfile, setPlayerProfile] = useState<PlayerProfileResponse | null>(null);
   const [playerStatus, setPlayerStatus] = useState("");
@@ -620,12 +568,6 @@ export function ArbiterDashboard({
   const [otbConnectStatus, setOtbConnectStatus] = useState<string>("");
   const router = useRouter();
   const searchParams = useSearchParams();
-=======
-  const [otbEventId, setOtbEventId] = useState("");
-  const [otbCameraEvents, setOtbCameraEvents] = useState<OTBCameraEvent[]>([]);
-  const [otbBoardEvents, setOtbBoardEvents] = useState<DGTBoardEvent[]>([]);
-  const [otbConnectStatus, setOtbConnectStatus] = useState<string>("");
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
 
   useEffect(() => {
     setNow(new Date());
@@ -735,15 +677,11 @@ export function ArbiterDashboard({
         const res = await fetch(`${apiBase}/v1/partner/keys`, { headers: authHeaders() });
         if (!res.ok) return;
         const data = (await res.json()) as { keys?: PartnerKey[] };
-<<<<<<< HEAD
         if (!cancelled) {
           const keys = data.keys ?? [];
           setPartnerKeys(keys);
           setPartnerSelectedKeyId((prev) => prev || keys[0]?.id || "");
         }
-=======
-        if (!cancelled) setPartnerKeys(data.keys ?? []);
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
       } catch {
         // ignore
       }
@@ -754,7 +692,6 @@ export function ArbiterDashboard({
 
   useEffect(() => {
     let cancelled = false;
-<<<<<<< HEAD
     async function loadPartnerOps() {
       if (page !== "partner") return;
       try {
@@ -784,8 +721,6 @@ export function ArbiterDashboard({
 
   useEffect(() => {
     let cancelled = false;
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
     async function loadTournament() {
       try {
         const res = await fetch(`${apiBase}/v1/tournament-dashboard?limit=200`, { headers: authHeaders() });
@@ -809,16 +744,10 @@ export function ArbiterDashboard({
       if (page !== "otb") return;
       try {
         const query = otbEventId ? `?event_id=${encodeURIComponent(otbEventId)}` : "";
-<<<<<<< HEAD
         const [cameraRes, boardRes, incidentsRes] = await Promise.all([
           fetch(`${apiBase}/v1/otb/camera-events${query}`, { headers: authHeaders() }),
           fetch(`${apiBase}/v1/otb/board-events${query}`, { headers: authHeaders() }),
           fetch(`${apiBase}/v1/otb/incidents${query}`, { headers: authHeaders() }),
-=======
-        const [cameraRes, boardRes] = await Promise.all([
-          fetch(`${apiBase}/v1/otb/camera-events${query}`, { headers: authHeaders() }),
-          fetch(`${apiBase}/v1/otb/board-events${query}`, { headers: authHeaders() }),
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
         ]);
         if (cameraRes.ok) {
           const data = (await cameraRes.json()) as { events?: OTBCameraEvent[] };
@@ -828,13 +757,10 @@ export function ArbiterDashboard({
           const data = (await boardRes.json()) as { events?: DGTBoardEvent[] };
           if (!cancelled) setOtbBoardEvents(data.events ?? []);
         }
-<<<<<<< HEAD
         if (incidentsRes.ok) {
           const data = (await incidentsRes.json()) as { incidents?: OTBIncidentRecord[] };
           if (!cancelled) setOtbIncidents(data.incidents ?? []);
         }
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
       } catch {
         // ignore
       }
@@ -846,7 +772,6 @@ export function ArbiterDashboard({
   const games = useMemo(() => [...feedGames].sort((a, b) => b.weighted_risk_score - a.weighted_risk_score), [feedGames]);
   const selectedGame = games.find((g) => g.game_id === selectedGameId) ?? null;
   const awaitingReview = Math.max(0, feedAlerts.filter((a) => !reviewedAlerts[a.id]).length);
-<<<<<<< HEAD
   const auditRecord = (auditDetails as AuditRecord | null) ?? null;
   const auditRequest = auditRecord?.request;
   const auditResponse = auditRecord?.response;
@@ -874,8 +799,6 @@ export function ArbiterDashboard({
       }))
       .sort((a, b) => b.weighted_risk_score - a.weighted_risk_score);
   }, [feedGames, selectedCase]);
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
 
   const navItems: Array<{ id: DashboardPage; label: string }> = [
     { id: "command", label: "Command Center" },
@@ -902,7 +825,6 @@ export function ArbiterDashboard({
       : "warn")
     : "warn";
 
-<<<<<<< HEAD
   const pageRoutes: Record<DashboardPage, string> = {
     command: "/",
     "deep-dive": "/deep-dive",
@@ -921,17 +843,11 @@ export function ArbiterDashboard({
     if (selectedGame?.audit_id) {
       loadAudit(selectedGame.audit_id);
       setReportAuditId(selectedGame.audit_id);
-=======
-  useEffect(() => {
-    if (selectedGame?.audit_id) {
-      loadAudit(selectedGame.audit_id);
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
     } else {
       setAuditDetails(null);
     }
   }, [selectedGame?.audit_id]);
 
-<<<<<<< HEAD
   useEffect(() => {
     if (selectedCaseId) {
       void loadCaseNotes(selectedCaseId);
@@ -995,14 +911,6 @@ export function ArbiterDashboard({
         priority: casePriority || null,
         assigned_to: caseAssignedTo || null,
       }),
-=======
-  async function createCase() {
-    const players = casePlayers.split(",").map((p) => p.trim()).filter(Boolean);
-    const res = await fetch(`${apiBase}/v1/cases`, {
-      method: "POST",
-      headers: authHeaders(),
-      body: JSON.stringify({ title: caseTitle, event_id: caseEventId || null, players }),
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
     });
     if (!res.ok) return;
     const created = (await res.json()) as CaseRecord;
@@ -1010,13 +918,10 @@ export function ArbiterDashboard({
     setCaseTitle("");
     setCaseEventId("");
     setCasePlayers("");
-<<<<<<< HEAD
     setCaseSummary("");
     setCaseTags("");
     setCasePriority("medium");
     setCaseAssignedTo("");
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
   }
 
   async function loadCaseNotes(caseId: string) {
@@ -1026,7 +931,6 @@ export function ArbiterDashboard({
     setCaseNotes(data.notes ?? []);
   }
 
-<<<<<<< HEAD
   async function loadCaseArtifacts(caseId: string) {
     const [flagsRes, evidenceRes, reviewsRes, signoffsRes] = await Promise.all([
       fetch(`${apiBase}/v1/cases/${caseId}/flags`, { headers: authHeaders() }),
@@ -1052,8 +956,6 @@ export function ArbiterDashboard({
     }
   }
 
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
   async function loadAudit(auditId: string) {
     const res = await fetch(`${apiBase}/v1/audit/${auditId}`, { headers: authHeaders() });
     if (!res.ok) return;
@@ -1066,11 +968,7 @@ export function ArbiterDashboard({
     const res = await fetch(`${apiBase}/v1/cases/${selectedCaseId}/notes`, {
       method: "POST",
       headers: authHeaders(),
-<<<<<<< HEAD
       body: JSON.stringify({ author: caseNoteAuthor, note_type: caseNoteType, text: caseNoteText }),
-=======
-      body: JSON.stringify({ text: caseNoteText }),
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
     });
     if (!res.ok) return;
     const note = (await res.json()) as CaseNote;
@@ -1078,7 +976,6 @@ export function ArbiterDashboard({
     setCaseNoteText("");
   }
 
-<<<<<<< HEAD
   async function addCaseReview() {
     if (!selectedCaseId) return;
     const res = await fetch(`${apiBase}/v1/cases/${selectedCaseId}/reviews`, {
@@ -1182,10 +1079,6 @@ export function ArbiterDashboard({
   async function generateReport() {
     setReportOutput("");
     setReportStatus("Generating report...");
-=======
-  async function generateReport() {
-    setReportOutput("");
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
     const res = await fetch(`${apiBase}/v1/reports/generate`, {
       method: "POST",
       headers: authHeaders(),
@@ -1194,7 +1087,6 @@ export function ArbiterDashboard({
         case_id: reportCaseId || null,
         mode: reportMode,
         export_format: reportFormat,
-<<<<<<< HEAD
         use_ai: reportUseAi,
         llm_provider: reportUseAi ? reportProvider : "none",
         llm_model: reportUseAi ? reportModel || null : null,
@@ -1205,27 +1097,17 @@ export function ArbiterDashboard({
     if (!res.ok) {
       const body = await res.json().catch(() => ({}));
       setReportStatus(typeof body?.detail === "string" ? body.detail : "Report generation failed.");
-=======
-      }),
-    });
-    if (!res.ok) {
-      setReportOutput("Report generation failed.");
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
       return;
     }
     if (reportFormat === "pdf") {
       const blob = await res.blob();
       const url = URL.createObjectURL(blob);
       setReportOutput(url);
-<<<<<<< HEAD
       setReportStatus("PDF generated.");
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
       return;
     }
     const data = await res.json();
     setReportOutput(JSON.stringify(data, null, 2));
-<<<<<<< HEAD
     setReportStatus("Report generated.");
   }
 
@@ -1556,21 +1438,6 @@ export function ArbiterDashboard({
     const note = (await res.json()) as CaseNote;
     setCaseNotes((prev) => [note, ...prev]);
     setDeepDiveNote("");
-=======
-  }
-
-  async function createPartnerKey() {
-    const res = await fetch(`${apiBase}/v1/partner/keys/create`, {
-      method: "POST",
-      headers: authHeaders(),
-      body: JSON.stringify({ partner_name: partnerName, webhook_url: partnerWebhook || null }),
-    });
-    if (!res.ok) return;
-    const key = (await res.json()) as PartnerKey;
-    setPartnerKeys((prev) => [key, ...prev]);
-    setPartnerName("");
-    setPartnerWebhook("");
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
   }
 
   async function connectLive() {
@@ -1587,7 +1454,6 @@ export function ArbiterDashboard({
     };
   }
 
-<<<<<<< HEAD
   async function createOtbIncident() {
     setOtbIncidentStatus("");
     const res = await fetch(`${apiBase}/v1/otb/incidents`, {
@@ -1637,8 +1503,6 @@ export function ArbiterDashboard({
     }
   }
 
-=======
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
   useEffect(() => {
     let cancelled = false;
     async function refreshLiveRisk() {
@@ -1692,7 +1556,6 @@ export function ArbiterDashboard({
 
       <nav className="dashNav">
         {navItems.map((item) => (
-<<<<<<< HEAD
           <button
             key={item.id}
             className={page === item.id ? "navBtn active" : "navBtn"}
@@ -1702,9 +1565,6 @@ export function ArbiterDashboard({
             }}
             type="button"
           >
-=======
-          <button key={item.id} className={page === item.id ? "navBtn active" : "navBtn"} onClick={() => setPage(item.id)} type="button">
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
             {item.label}
           </button>
         ))}
@@ -1724,11 +1584,7 @@ export function ArbiterDashboard({
                 {games.map((g, idx) => {
                   const tier = normalizeRiskTier(g.risk_tier);
                   return (
-<<<<<<< HEAD
                     <article key={g.game_id} className="gameCard" onClick={() => { setSelectedGameId(g.game_id); setPage("deep-dive"); navigate(`/deep-dive?auditId=${encodeURIComponent(g.audit_id)}`); }}>
-=======
-                    <article key={g.game_id} className="gameCard" onClick={() => { setSelectedGameId(g.game_id); setPage("deep-dive"); }}>
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
                       <div className="cardRow">
                         <div>
                           <strong>{g.player_id || "None"}</strong>
@@ -1795,7 +1651,6 @@ export function ArbiterDashboard({
       ) : null}
 
       {page === "deep-dive" ? (
-<<<<<<< HEAD
         <DeepDiveSection
           selectedGame={selectedGame}
           selectedCase={selectedCase}
@@ -2060,385 +1915,6 @@ export function ArbiterDashboard({
           systemStatusError={systemStatusError}
           missingEnvVars={missingEnvVars}
         />
-=======
-        <section className="stacked">
-          <article className="panel">
-            <div className="panelHead">
-              <h2>Game Deep Dive</h2>
-              <RiskPill tier={selectedGame ? normalizeRiskTier(selectedGame.risk_tier) : null} />
-            </div>
-            {selectedGame ? (
-              <div className="muted">
-                Player: {selectedGame.player_id || "None"} | Event: {selectedGame.event_id || "None"} | Move: {selectedGame.move_number || "None"} |
-                Confidence: {Number.isFinite(selectedGame.confidence) ? selectedGame.confidence.toFixed(3) : "None"} |
-                Audit ID: {selectedGame.audit_id || "None"}
-              </div>
-            ) : (
-              <div className="muted">None</div>
-            )}
-          </article>
-          <article className="panel">
-            <h3>Charts</h3>
-            <div className="muted">None</div>
-          </article>
-          <article className="panel">
-            <h3>Behavioral Metrics</h3>
-            {auditDetails && (auditDetails as any).response ? (
-              <pre className="previewPane">
-                {JSON.stringify((auditDetails as any).response?.behavioral_metrics ?? {}, null, 2)}
-              </pre>
-            ) : (
-              <div className="muted">No behavioral telemetry available.</div>
-            )}
-          </article>
-          <article className="panel">
-            <h3>Move-by-Move Table</h3>
-            <div className="muted">None</div>
-          </article>
-          <article className="panel">
-            <h3>Arbiter Notes</h3>
-            <div className="muted">None</div>
-          </article>
-        </section>
-      ) : null}
-
-      {page === "player" ? (
-        <section className="stacked">
-          <article className="panel"><h2>Player Profile</h2><div className="muted">None</div></article>
-        </section>
-      ) : null}
-
-      {page === "cases" ? (
-        <section className="stacked">
-          <article className="panel">
-            <div className="panelHead">
-              <h2>Create Case</h2>
-              <button className="ghostBtn" type="button" onClick={createCase}>Create</button>
-            </div>
-            <div className="formGrid">
-              <input placeholder="Title" value={caseTitle} onChange={(e) => setCaseTitle(e.target.value)} />
-              <input placeholder="Event ID (optional)" value={caseEventId} onChange={(e) => setCaseEventId(e.target.value)} />
-              <input placeholder="Players (comma-separated)" value={casePlayers} onChange={(e) => setCasePlayers(e.target.value)} />
-            </div>
-          </article>
-          <article className="panel">
-            <div className="panelHead">
-              <h2>Cases</h2>
-              <div className="muted">{cases.length} total</div>
-            </div>
-            {cases.length === 0 ? (
-              <div className="muted">None</div>
-            ) : (
-              <div className="alertList">
-                {cases.map((c) => (
-                  <article key={c.id} className="alertItem" onClick={() => { setSelectedCaseId(c.id); loadCaseNotes(c.id); }}>
-                    <div className="cardRow">
-                      <strong>{c.title}</strong>
-                      <span className="miniBadge pending">{c.status}</span>
-                    </div>
-                    <div className="muted">Event: {c.event_id || "None"}</div>
-                    <div className="muted">Players: {c.players.join(", ") || "None"}</div>
-                  </article>
-                ))}
-              </div>
-            )}
-          </article>
-          <article className="panel notesPanel">
-            <div className="panelHead">
-              <h2>Case Notes</h2>
-              <button className="ghostBtn" type="button" onClick={addNote}>Add Note</button>
-            </div>
-            <textarea rows={4} placeholder="Add arbiter note..." value={caseNoteText} onChange={(e) => setCaseNoteText(e.target.value)} />
-            <div className="alertList">
-              {caseNotes.length ? caseNotes.map((n) => (
-                <div className="alertItem" key={n.id}>
-                  <div className="cardRow">
-                    <strong>{n.author || "Arbiter"}</strong>
-                    <span className="miniBadge reviewed">{n.created_at ? new Date(n.created_at).toLocaleTimeString() : ""}</span>
-                  </div>
-                  <div>{n.text || "Note"}</div>
-                </div>
-              )) : <div className="muted">No notes yet.</div>}
-            </div>
-          </article>
-        </section>
-      ) : null}
-
-      {page === "live" ? (
-        <section className="stacked">
-          <article className="panel">
-            <div className="panelHead">
-              <h2>Live Monitor</h2>
-              <button className="ghostBtn" type="button" onClick={connectLive}>Connect</button>
-            </div>
-            <div className="formGrid">
-              <input placeholder="Session ID" value={liveSessionId} onChange={(e) => setLiveSessionId(e.target.value)} />
-              <div className="muted">Connect to a live session to view events.</div>
-            </div>
-            <div className="monoData">Risk: {liveRisk ? JSON.stringify(liveRisk) : "None"}</div>
-          </article>
-          <article className="panel">
-            <h2>Live Event Stream</h2>
-            <div className="alertList">
-              {liveEvents.length ? liveEvents.map((e, idx) => (
-                <div className="alertItem" key={`evt-${idx}`}>
-                  <pre className="monoData">{JSON.stringify(e)}</pre>
-                </div>
-              )) : <div className="muted">No events yet.</div>}
-            </div>
-          </article>
-        </section>
-      ) : null}
-
-      {page === "report" ? (
-        <section className="stacked">
-          <article className="panel">
-            <div className="panelHead">
-              <h2>Report Composer</h2>
-              <button className="ghostBtn" type="button" onClick={generateReport}>Generate</button>
-            </div>
-            <div className="formGrid">
-              <input placeholder="Audit ID (optional)" value={reportAuditId} onChange={(e) => setReportAuditId(e.target.value)} />
-              <input placeholder="Case ID (optional)" value={reportCaseId} onChange={(e) => setReportCaseId(e.target.value)} />
-              <select value={reportMode} onChange={(e) => setReportMode(e.target.value)}>
-                <option value="technical">Technical</option>
-                <option value="arbiter">Arbiter</option>
-                <option value="legal">Legal</option>
-              </select>
-              <select value={reportFormat} onChange={(e) => setReportFormat(e.target.value)}>
-                <option value="json">JSON</option>
-                <option value="csv">CSV</option>
-                <option value="pdf">PDF</option>
-              </select>
-            </div>
-            {reportFormat === "pdf" && reportOutput ? (
-              <a className="ghostBtn" href={reportOutput} target="_blank" rel="noreferrer">Open PDF</a>
-            ) : null}
-            {reportOutput ? <pre className="previewPane">{reportOutput}</pre> : <div className="muted">No report generated yet.</div>}
-          </article>
-        </section>
-      ) : null}
-
-      {page === "tournament" ? (
-        <section className="stacked">
-          <article className="panel">
-            <h2>Tournament Dashboard</h2>
-            {tournamentPlayers.length ? (
-              <div className="alertList">
-                {tournamentPlayers.map((p, idx) => (
-                  <div className="alertItem" key={`tp-${idx}`}>
-                    <div className="cardRow">
-                      <strong>{String(p.player_id || "player")}</strong>
-                      <span className="miniBadge pending">{String(p.risk_tier || "")}</span>
-                    </div>
-                    <div className="muted">Avg Risk Score: {String(p.avg_risk_score || "")}</div>
-                  </div>
-                ))}
-              </div>
-            ) : <div className="muted">No tournament data yet.</div>}
-          </article>
-          <article className="panel">
-            <h2>Alerts</h2>
-            {tournamentAlerts.length ? (
-              <div className="alertList">
-                {tournamentAlerts.map((a, idx) => (
-                  <div className="alertItem" key={`ta-${idx}`}>{String(a.message || "")}</div>
-                ))}
-              </div>
-            ) : <div className="muted">No alerts.</div>}
-          </article>
-        </section>
-      ) : null}
-
-      {page === "partner" ? (
-        <section className="stacked">
-          <article className="panel">
-            <div className="panelHead">
-              <h2>Partner Keys</h2>
-              <button className="ghostBtn" type="button" onClick={createPartnerKey}>Create</button>
-            </div>
-            <div className="formGrid">
-              <input placeholder="Partner name" value={partnerName} onChange={(e) => setPartnerName(e.target.value)} />
-              <input placeholder="Webhook URL (optional)" value={partnerWebhook} onChange={(e) => setPartnerWebhook(e.target.value)} />
-            </div>
-          </article>
-          <article className="panel">
-            {partnerKeys.length ? (
-              <div className="alertList">
-                {partnerKeys.map((k) => (
-                  <div className="alertItem" key={k.id}>
-                    <div className="cardRow">
-                      <strong>{k.partner_name}</strong>
-                      <span className="miniBadge reviewed">{k.active ? "active" : "disabled"}</span>
-                    </div>
-                    <div className="monoData">Key: {k.key}</div>
-                    <div className="monoData">Secret: {k.secret}</div>
-                    <div className="muted">Webhook: {k.webhook_url || "None"}</div>
-                  </div>
-                ))}
-              </div>
-            ) : <div className="muted">No partner keys.</div>}
-          </article>
-        </section>
-      ) : null}
-
-      {page === "otb" ? (
-        <section className="stacked">
-          <article className="panel">
-            <div className="panelHead">
-              <h2>OTB Monitor</h2>
-              <div className="muted">Camera events and DGT board feeds for OTB sessions.</div>
-            </div>
-            <div className="formGrid">
-              <input placeholder="Event ID (optional)" value={otbEventId} onChange={(e) => setOtbEventId(e.target.value)} />
-              <div className="muted">Filter by event to isolate a tournament or board batch.</div>
-            </div>
-            <div className="buttonRow">
-              <button
-                className="ghostBtn"
-                type="button"
-                onClick={async () => {
-                  setOtbConnectStatus("");
-                  const sdk = (window as any).SentinelSDK;
-                  if (!sdk || typeof sdk.connectDgtWebSerial !== "function") {
-                    setOtbConnectStatus("Sentinel SDK not loaded or missing DGT support.");
-                    return;
-                  }
-                  try {
-                    await sdk.connectDgtWebSerial({
-                      eventId: otbEventId || undefined,
-                      sessionId: liveSessionId || undefined,
-                    });
-                    setOtbConnectStatus("DGT board connected.");
-                  } catch (err: any) {
-                    setOtbConnectStatus(err?.message || "DGT connection failed.");
-                  }
-                }}
-              >
-                Connect DGT Board
-              </button>
-              {otbConnectStatus ? <div className="muted">{otbConnectStatus}</div> : null}
-            </div>
-            <div className="muted">
-              Web Serial requires Chrome/Edge over HTTPS (or localhost) and a user gesture to select the board.
-            </div>
-          </article>
-          <article className="panel">
-            <div className="panelHead">
-              <h2>OTB Camera Events</h2>
-              <div className="muted">{otbCameraEvents.length} events</div>
-            </div>
-            {otbCameraEvents.length ? (
-              <div className="alertList">
-                {otbCameraEvents.map((evt) => (
-                  <article className="alertItem" key={evt.id}>
-                    <div className="cardRow">
-                      <strong>{evt.player_id || "Unknown player"}</strong>
-                      <span className="miniBadge pending">{evt.storage_mode || "safe"}</span>
-                    </div>
-                    <div className="muted">
-                      Event: {evt.event_id || "None"} | Session: {evt.session_id || "None"} | Camera: {evt.camera_id || "None"}
-                    </div>
-                    <pre className="previewPane">{JSON.stringify(evt.summary ?? {}, null, 2)}</pre>
-                  </article>
-                ))}
-              </div>
-            ) : (
-              <div className="muted">No camera events.</div>
-            )}
-          </article>
-          <article className="panel">
-            <div className="panelHead">
-              <h2>DGT Board Events</h2>
-              <div className="muted">{otbBoardEvents.length} events</div>
-            </div>
-            {otbBoardEvents.length ? (
-              <div className="alertList">
-                {otbBoardEvents.map((evt) => (
-                  <article className="alertItem" key={evt.id}>
-                    <div className="cardRow">
-                      <strong>{evt.board_serial || "Board"}</strong>
-                      <span className="miniBadge reviewed">{evt.session_id || "session"}</span>
-                    </div>
-                    <div className="muted">Event: {evt.event_id || "None"} | Move: {evt.move_uci || "None"} | Ply: {evt.ply ?? "None"}</div>
-                    <div className="monoData">Clock: {evt.clock_ms ?? "None"} ms</div>
-                  </article>
-                ))}
-              </div>
-            ) : (
-              <div className="muted">No DGT board events.</div>
-            )}
-          </article>
-        </section>
-      ) : null}
-
-      {page === "admin" ? (
-        <section className="adminGrid">
-          <article className="panel">
-            <div className="panelHead">
-              <h2>System Status</h2>
-              <span className="badge on">Live</span>
-            </div>
-            {systemStatus ? (
-              <>
-                <div className="muted">Updated {new Date(systemStatus.generated_at_utc).toLocaleTimeString()}</div>
-                <div className="monoData">Warnings: {systemStatus.warnings.length}</div>
-                {systemStatus.warnings.length ? (
-                  <div className="alertList">
-                    {systemStatus.warnings.map((w) => (
-                      <div className="miniBadge danger" key={w}>{w}</div>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="miniBadge safe">No warnings</div>
-                )}
-              </>
-            ) : (
-              <div className="muted">{systemStatusError ?? "Loading..."}</div>
-            )}
-          </article>
-
-          <article className="panel">
-            <h2>Calibration Profile</h2>
-            {systemStatus ? (
-              <>
-                <div className="muted">Source: {systemStatus.calibration?.source ?? "unknown"}</div>
-                <div className="monoData">Version: {systemStatus.calibration?.profile_version ?? "unknown"}</div>
-                <div className="monoData">Bands: {systemStatus.calibration?.band_count ?? "None"}</div>
-                <div className="muted">
-                  Coverage: {systemStatus.calibration?.coverage_min_elo ?? "None"} to {systemStatus.calibration?.coverage_max_elo ?? "None"}
-                </div>
-                <div className="muted">QA: {systemStatus.calibration?.qa?.ok === false ? "Failed" : "OK"}</div>
-              </>
-            ) : (
-              <div className="muted">{systemStatusError ?? "Loading..."}</div>
-            )}
-          </article>
-
-          <article className="panel">
-            <h2>Model Artifacts</h2>
-            {systemStatus ? (
-              <>
-                <div className="muted">ML Fusion: {systemStatus.ml_fusion?.enabled ? "Enabled" : "Disabled"}</div>
-                <div className="monoData">Primary: {systemStatus.ml_fusion?.primary?.exists ? "Present" : "Missing"}</div>
-                <div className="monoData">Secondary: {systemStatus.ml_fusion?.secondary?.exists ? "Present" : "Missing"}</div>
-                <div className="muted">Maia Buckets: {systemStatus.maia?.available_count ?? 0}</div>
-                <div className="muted">Maia LC0: {systemStatus.maia?.lc0_path ? "Configured" : "Missing"}</div>
-                <div className="muted">Maia Version: {systemStatus.maia?.version ?? "unknown"}</div>
-              </>
-            ) : (
-              <div className="muted">{systemStatusError ?? "Loading..."}</div>
-            )}
-          </article>
-
-          <article className="panel">
-            <h2>System Config</h2>
-            <div className="muted">Missing env: {missingEnvVars.length ? missingEnvVars.join(", ") : "None"}</div>
-            <div className="muted">Opening Book: {systemStatus?.opening_book?.exists ? "Present" : "Missing"}</div>
-            <div className="muted">Tablebase: {systemStatus?.tablebase?.exists ? "Present" : "Missing"}</div>
-          </article>
-        </section>
->>>>>>> f27ff144a8ecc8ace559ec86547e0cd2d9dd3674
       ) : null}
 
       <footer className="stickyDisclaimer">
