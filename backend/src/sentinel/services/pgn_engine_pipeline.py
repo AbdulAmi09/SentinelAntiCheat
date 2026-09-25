@@ -154,6 +154,15 @@ def _analyse_position(
 
 def game_to_inputs(game: chess.pgn.Game, game_id: str, player_color: str, ctx: EngineContext) -> GameInput:
     board = game.board()
+    # python-chess sets board.chess960 from the PGN's Variant/SetUp/FEN headers,
+    # but Stockfish also needs UCI_Chess960 set or it misinterprets castling
+    # moves/positions for 960 games. A single EngineContext can be reused across
+    # multiple games in one submission, so this is set per game, not once at
+    # engine startup.
+    try:
+        ctx.engine.configure({"UCI_Chess960": bool(board.chess960)})
+    except Exception:
+        pass
     node = game
     moves: list[MoveInput] = []
     last_clock = {chess.WHITE: None, chess.BLACK: None}
