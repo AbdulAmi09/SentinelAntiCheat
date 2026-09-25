@@ -77,23 +77,50 @@ Minimum required fields in `game.json`:
 statistical model calibrates against the player's rated strength, so
 omitting it materially weakens the analysis.
 
-Optional fields that improve detection quality, if your client can capture
-them (all optional, all additive — send what you have):
+`games_played` (int) should be included whenever you have it too — it
+sets whether this player is treated as cold-start (fewer than 10 games:
+detection stays active but confidence is explicitly downgraded rather
+than over-trusting a thin history). Omitting it defaults to 0, i.e.
+every player is treated as brand-new.
 
-| Field | What it's for |
-|---|---|
-| `move_history` | per-move timestamps/clock data if not already in the PGN's `%clk` comments |
-| `mouse_events`, `click_timing`, `keyboard_events`, `touch_events` | behavioral-consistency signal (Layer 5/6) |
-| `window_events`, `page_events`, `connection_events` | tab-switching / focus-loss / connection-anomaly signals |
-| `environment` | browser/device metadata |
-| `device_fingerprint` | pass `fingerprint_hash` directly, or `fingerprint_raw` and Sentinel will hash it server-side — the raw value is never stored |
-| `camera_events` + `consent` | only relevant if your platform does webcam proctoring; requires explicit consent flags, see below |
+Optional fields that improve detection quality, if your client can capture
+them (all optional, all additive — send what you have). Only the ones
+marked "read today" are actually consumed by the analysis right now;
+the others are accepted and stored but not yet used, so don't prioritize
+matching their shape:
+
+| Field | What it's for | Status |
+|---|---|---|
+| `window_events` | tab/focus-loss signal — only `{"type"/"event": "blur"}` is counted | read today |
+| `page_events` | copy/paste/cut detection — `{"type"/"event": "copy"\|"paste"\|"cut"}` | read today |
+| `per_move_summary` | per-move behavioral timing — see field list below | read today |
+| `mouse_events`, `click_timing`, `keyboard_events`, `touch_events` | counted, not yet deeply parsed | partial |
+| `move_history`, `connection_events` | accepted, not yet wired into analysis | not yet used |
+| `environment` | browser/device metadata, passed through | read today |
+| `device_fingerprint` | pass `fingerprint_hash` directly, or `fingerprint_raw` and Sentinel will hash it server-side — the raw value is never stored | read today |
+| `camera_events` + `consent` | only relevant if your platform does webcam proctoring; requires explicit consent flags, see below | read today |
+
+`per_move_summary` is a list, one entry per move, with any of these
+optional numeric keys: `path_straightness`, `time_spent_seconds`,
+`drag_duration_ms`, `hover_dwell_on_played_square_ms`,
+`squares_visited_count`, `reaction_time_ms`.
 
 Response:
 
 ```json
 {"status": "accepted", "job_id": "job_xxxxxxxx", "message": "..."}
 ```
+
+**Idempotent submission.** Resubmitting the same `game_id` + `player_id`
+(scoped to your API key) returns the existing job instead of running a
+second analysis, as long as that job didn't fail:
+
+```json
+{"status": "accepted", "job_id": "job_xxxxxxxx", "message": "Already submitted; returning the existing job instead of re-analyzing.", "duplicate": true}
+```
+
+A job whose *analysis* failed does not block a resubmission — that gets
+a fresh attempt with a new job.
 
 **Camera data note:** if you send `camera_events`, set
 `camera_storage_mode` to `"safe"` (default) unless you specifically need
@@ -147,6 +174,23 @@ curl https://<sentinel-host>/v1/partner/result/job_xxxxxxxx \
 
 Same payload shape as the webhook, plus `"status"` will be one of
 `queued`, `complete`, `webhook_failed`, or `failed`.
+
+## 6. Data retention and deletion
+
+Submitted games/results/telemetry are auto-purged after 90 days by
+default (server-configurable). To delete sooner — e.g. a player closes
+their account — call either of these (scoped to your own API key; you
+can only delete data you submitted):
+
+```bash
+curl -X DELETE https://<sentinel-host>/v1/partner/data/player/<player_id> \
+  -H "x-api-key: <your-key>"
+
+curl -X DELETE https://<sentinel-host>/v1/partner/data/game/<game_id> \
+  -H "x-api-key: <your-key>"
+```
+
+Both return `{"<player_id|game_id>": "...", "jobs_deleted": N}`.
 
 ## Rate limits
 
