@@ -1069,6 +1069,7 @@ def partner_analyze(
     job = partner_repo.create_job(
         job_id=job_id,
         api_key_id=key["id"],
+        federation_id=key.get("federation_id"),
         game_id=req.game_id,
         player_id=req.player_id,
         raw_payload=payload,
@@ -1148,6 +1149,7 @@ def list_partner_keys(
 def create_partner_key(
     req: PartnerKeyCreateRequest,
     x_role: Annotated[str, Header(alias="X-Role")] = "system_admin",
+    x_federation_id: Annotated[str | None, Header(alias="X-Federation-Id")] = None,
 ) -> dict:
     authorize_action(x_role, "partner_key_create")
     api_key, secret = generate_keypair()
@@ -1156,6 +1158,7 @@ def create_partner_key(
             key=api_key,
             secret=secret,
             partner_name=req.partner_name,
+            federation_id=x_federation_id,
             webhook_url=req.webhook_url,
             rate_limit_per_minute=req.rate_limit_per_minute,
         )
@@ -1199,7 +1202,13 @@ def create_partner_session(
 ) -> dict:
     key = _require_partner_key(x_api_key)
     session_id = f"sess_{secrets.token_hex(8)}"
-    partner_repo.create_session(session_id, key["id"], req.game_id, req.player_id)
+    partner_repo.create_session(
+        session_id=session_id,
+        api_key_id=key["id"],
+        federation_id=key.get("federation_id"),
+        game_id=req.game_id,
+        player_id=req.player_id,
+    )
     investigation_repo.create_live_session(req.game_id, [req.player_id or "unknown"])
     return {"session_id": session_id}
 
