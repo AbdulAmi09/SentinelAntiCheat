@@ -11,12 +11,15 @@ from typing import Any
 
 import requests
 
+from sentinel.config import settings
 from sentinel.repositories.partner import PartnerRepository
 from sentinel.schemas import AnalyzeRequest, AnalyzePgnRequest, HistoricalProfile
 from sentinel.services.feature_pipeline import compute_features
 from sentinel.services.pgn_engine_pipeline import create_engine_context, game_to_inputs, parse_pgn_games
 from sentinel.services.risk_engine import classify_with_meta
 from sentinel.services.signal_layers import evaluate_all_layers
+
+_PURGE_INTERVAL_SECONDS = 3600  # check retention once an hour, not on every poll tick
 
 
 class PartnerJobWorker:
@@ -25,6 +28,7 @@ class PartnerJobWorker:
         self.queue: Queue[str] = Queue()
         self._thread: threading.Thread | None = None
         self._stop = threading.Event()
+        self._last_purge = 0.0
 
     def start(self) -> None:
         if self._thread and self._thread.is_alive():
@@ -44,8 +48,19 @@ class PartnerJobWorker:
             self.enqueue(job_id)
         return len(queued)
 
+    def _maybe_purge_expired(self) -> None:
+        now = time.time()
+        if now - self._last_purge < _PURGE_INTERVAL_SECONDS:
+            return
+        self._last_purge = now
+        try:
+            self.repo.purge_expired_jobs(settings.partner_data_retention_days)
+        except Exception:
+            pass
+
     def _run(self) -> None:
         while not self._stop.is_set():
+            self._maybe_purge_expired()
             try:
                 job_id = self.queue.get(timeout=0.5)
             except Exception:
@@ -66,6 +81,8 @@ class PartnerJobWorker:
         player_color = payload.get("player_color") or "white"
         event_id = payload.get("game_id") or job.get("game_id") or "partner-game"
         official_elo = int(payload.get("official_elo") or 1500)
+        games_played = payload.get("games_played")
+        games_count = int(games_played) if isinstance(games_played, (int, float)) else 0
 
         games = parse_pgn_games(pgn_text)
         if not games:
@@ -112,7 +129,7 @@ class PartnerJobWorker:
             event_type="online",
             official_elo=official_elo,
             games=parsed_games,
-            historical=HistoricalProfile(),
+            historical=HistoricalProfile(games_count=games_count),
             behavioral=behavioral,
         )
         features = compute_features(normalized)

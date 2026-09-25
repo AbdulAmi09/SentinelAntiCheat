@@ -1045,6 +1045,15 @@ def partner_analyze(
         if settings.consent_required_for_raw and not consent_given:
             raise HTTPException(status_code=422, detail="Camera raw storage requires consent")
 
+    existing = partner_repo.find_active_job(key["id"], req.game_id, req.player_id)
+    if existing is not None:
+        return {
+            "status": "accepted",
+            "job_id": existing["job_id"],
+            "message": "Already submitted; returning the existing job instead of re-analyzing.",
+            "duplicate": True,
+        }
+
     games = parse_pgn_games(req.pgn)
     if not games:
         raise HTTPException(status_code=422, detail="Invalid PGN payload")
@@ -1126,6 +1135,31 @@ def partner_result(
         "risk_level": job.get("risk_level"),
         "risk_score": job.get("risk_score"),
     }
+
+
+@app.delete("/v1/partner/data/player/{player_id}")
+def delete_partner_data_by_player(
+    player_id: str,
+    x_api_key: Annotated[str | None, Header(alias="x-api-key")] = None,
+) -> dict:
+    """Delete all submitted games/results/telemetry for one player_id.
+
+    Scoped to the calling partner's own API key -- a partner can only
+    delete data they themselves submitted, not another partner's.
+    """
+    key = _require_partner_key(x_api_key)
+    deleted = partner_repo.delete_jobs_by_player(key["id"], player_id)
+    return {"player_id": player_id, "jobs_deleted": deleted}
+
+
+@app.delete("/v1/partner/data/game/{game_id}")
+def delete_partner_data_by_game(
+    game_id: str,
+    x_api_key: Annotated[str | None, Header(alias="x-api-key")] = None,
+) -> dict:
+    key = _require_partner_key(x_api_key)
+    deleted = partner_repo.delete_jobs_by_game(key["id"], game_id)
+    return {"game_id": game_id, "jobs_deleted": deleted}
 
 
 @app.post("/v1/partner/webhook/register")

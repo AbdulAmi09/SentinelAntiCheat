@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 import sqlite3
-from datetime import UTC, datetime
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 from uuid import uuid4
 
@@ -328,6 +328,87 @@ class PartnerRepository:
             )
             conn.commit()
         return self.get_job(job_id)
+
+    def find_active_job(self, api_key_id: str, game_id: str, player_id: str) -> dict | None:
+        """Most recent non-failed job for this (partner, game, player).
+
+        Used for idempotent submission: a partner resubmitting the same
+        completed game (e.g. after a timeout on their side) gets the
+        existing job back instead of paying for a second analysis. A job
+        whose *analysis* failed is not returned here, so a resubmission
+        after a genuine failure still gets a fresh attempt; a job whose
+        webhook delivery failed but whose analysis succeeded still counts
+        as active (the caller can poll for the result).
+        """
+        with sqlite3.connect(self.db_path) as conn:
+            row = conn.execute(
+                (
+                    "SELECT job_id FROM partner_jobs "
+                    "WHERE api_key_id = ? AND game_id = ? AND player_id = ? AND status != 'failed' "
+                    "ORDER BY created_at DESC LIMIT 1"
+                ),
+                (api_key_id, game_id, player_id),
+            ).fetchone()
+        if not row:
+            return None
+        return self.get_job(row[0])
+
+    def delete_jobs_by_player(self, api_key_id: str, player_id: str) -> int:
+        with sqlite3.connect(self.db_path) as conn:
+            job_ids = [
+                r[0]
+                for r in conn.execute(
+                    "SELECT job_id FROM partner_jobs WHERE api_key_id = ? AND player_id = ?",
+                    (api_key_id, player_id),
+                ).fetchall()
+            ]
+            for job_id in job_ids:
+                conn.execute("DELETE FROM camera_events WHERE job_id = ?", (job_id,))
+                conn.execute("DELETE FROM consent_logs WHERE job_id = ?", (job_id,))
+            cur = conn.execute(
+                "DELETE FROM partner_jobs WHERE api_key_id = ? AND player_id = ?",
+                (api_key_id, player_id),
+            )
+            conn.commit()
+            return cur.rowcount
+
+    def delete_jobs_by_game(self, api_key_id: str, game_id: str) -> int:
+        with sqlite3.connect(self.db_path) as conn:
+            job_ids = [
+                r[0]
+                for r in conn.execute(
+                    "SELECT job_id FROM partner_jobs WHERE api_key_id = ? AND game_id = ?",
+                    (api_key_id, game_id),
+                ).fetchall()
+            ]
+            for job_id in job_ids:
+                conn.execute("DELETE FROM camera_events WHERE job_id = ?", (job_id,))
+                conn.execute("DELETE FROM consent_logs WHERE job_id = ?", (job_id,))
+            cur = conn.execute(
+                "DELETE FROM partner_jobs WHERE api_key_id = ? AND game_id = ?",
+                (api_key_id, game_id),
+            )
+            conn.commit()
+            return cur.rowcount
+
+    def purge_expired_jobs(self, retention_days: int) -> int:
+        if retention_days <= 0:
+            return 0
+        cutoff = (datetime.now(UTC) - timedelta(days=retention_days)).isoformat()
+        with sqlite3.connect(self.db_path) as conn:
+            job_ids = [
+                r[0]
+                for r in conn.execute(
+                    "SELECT job_id FROM partner_jobs WHERE created_at < ?",
+                    (cutoff,),
+                ).fetchall()
+            ]
+            for job_id in job_ids:
+                conn.execute("DELETE FROM camera_events WHERE job_id = ?", (job_id,))
+                conn.execute("DELETE FROM consent_logs WHERE job_id = ?", (job_id,))
+            cur = conn.execute("DELETE FROM partner_jobs WHERE created_at < ?", (cutoff,))
+            conn.commit()
+            return cur.rowcount
 
     def get_job(self, job_id: str) -> dict | None:
         with sqlite3.connect(self.db_path) as conn:

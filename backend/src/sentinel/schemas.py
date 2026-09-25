@@ -404,6 +404,7 @@ class PartnerAnalyzeRequest(BaseModel):
     player_color: str = Field(default="white", pattern="^(white|black)$")
     pgn: str
     official_elo: int | None = None
+    games_played: int | None = None
     fen_history: list[str] = Field(default_factory=list)
     move_history: list[dict[str, Any]] = Field(default_factory=list)
     mouse_events: list[dict[str, Any]] = Field(default_factory=list)

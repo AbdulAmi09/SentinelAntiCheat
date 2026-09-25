@@ -65,6 +65,7 @@ class Settings(BaseSettings):
     report_pdf_engine: str = "auto"
     camera_raw_storage_enabled: bool = False
     consent_required_for_raw: bool = True
+    partner_data_retention_days: int = 90
 
 
 settings = Settings()
